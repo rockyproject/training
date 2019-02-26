@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <p:dataTable var="membre" value="#{saisie.membre.listeMembres()}">
+            <p:column headerText="ID">
+                <h:outputText value="#{membre.idMembre}"/>
+            </p:column>
+            <p:column headerText="Nom">
+                <h:outputText value="#{membre.nom}"/>
+            </p:column>
+            <p:column headerText="PostNom">
+                <h:outputText value="#{membre.postNom}"/>
+            </p:column>
+            <p:column headerText="Prenom">
+                <h:outputText value="#{membre.prenom}"/>
+            </p:column>
+            <p:column headerText="Selection">
+                <h:outputText value="Selectionner"/>
+            </p:column>
+            <p:column headerText="Modification">
+                <p:link value="Modifier" outcome="ModifMembre.xhtml">
+                    <f:param name="id" value="#{membre.idMembre}"/>
+                </p:link>
+            </p:column>
+            <p:column headerText="Suppression">
+                <h:outputText value="Supprimer"/>
+            </p:column>
+        </p:dataTable>
+        
+    </h:body>
+</html>
+

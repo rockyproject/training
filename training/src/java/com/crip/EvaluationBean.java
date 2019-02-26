@@ -1,11 +1,11 @@
 
 package com.crip;
 
-import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import java.util.Date;
 
-@Named(value = "evaluationBean")
+@ManagedBean
 @RequestScoped
 public class EvaluationBean {
 

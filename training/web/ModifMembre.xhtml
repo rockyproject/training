@@ -1,9 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -11,12 +9,6 @@
         <h:form>
             
             <span style="color: red">#{saisie.message}</span><br/>
-            
-            <ui:remove>
-            <span style="color: red">#{saisie.membre.idMembre}</span><br/>
-            
-            <h:inputText value="#{saisie.membre.idMembre}"/>
-            </ui:remove>
             
             <table>
                 <tr>
@@ -44,10 +36,7 @@
                     <td><h:commandButton action="#{saisie.enregistrerMembre()}" value="Enregistrer"/></td>
                 </tr>
             </table>
-            
-            <ui:remove>
-            <h:commandButton action="#{saisie.enregistrerMembre()}" value="Enregistrer"/>
-            </ui:remove>
+                        
         </h:form>
     </h:body>
 </html>

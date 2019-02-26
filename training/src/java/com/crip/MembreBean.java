@@ -1,11 +1,11 @@
 
 package com.crip;
 
-import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 
 
-@Named(value = "membreBean")
+@ManagedBean
 @RequestScoped
 public class MembreBean {
 
@@ -13,6 +13,8 @@ public class MembreBean {
     public MembreBean() {
         
     }
+    
+    
     private String idMembre;
     private String nomMembre;
     private String postnomMembre;
@@ -59,5 +61,6 @@ public class MembreBean {
     public void setSexeMembre(String sexeMembre) {
         this.sexeMembre = sexeMembre;
     }
+    
     
 }
