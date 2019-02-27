@@ -1,0 +1,125 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 22 févr. 2019, 11:41:07
+    Author     : JUSTIN KABANZA
+*/
+body{
+    background-color:papayawhip;
+}
+
+#contenu_glob {
+    background-color:white;
+    width:80%
+}
+#entete{
+        margin-top:10px;
+	text-align:center;
+	border: 1px solid #999;
+	width:100%;
+	height:35px;
+	font-size:30px;
+        background-color: greenyellow;
+        border-radius: 10px 10px 0px 0px;
+}
+
+#image{
+        margin-top:0px;
+	text-align:center;
+	border: 1px solid #999;
+	width:100%;
+	height:55px;	
+        border-radius: 0px 0px 0px 0px;
+}
+
+#corps{
+        margin-top:-2px;
+	text-align:center;
+	border: 1px solid #999;
+	width:100%;
+	height:435px;
+	font-size:20px;
+        background-color: skyblue;
+        border-radius: 0px 0px 0px 0px;
+}
+
+#corpsDroite{
+        
+	text-align:justify;
+	border: 1px solid #999;
+	width:50%;
+	height:435px;
+	font-size:18px;
+        background-color: rosybrown;
+        border-radius: 0px 0px 0px 0px;
+}
+
+#corpsGauche{
+        margin-left: 50%;
+        margin-top: -437px;
+	text-align:center;
+	border: 1px solid #999;
+	width:50%;
+	height:435px;
+	font-size:20px;
+        background-color: orchid;
+        border-radius: 0px 0px 0px 0px;
+}
+
+
+fieldset{
+        border-radius: 10px 10px 10px 10px;
+	border:solid #666 2px;
+}
+
+#prnt{
+	text-align:center;
+        border-radius: 10px 10px 10px 10px;
+	border:solid 1px #333333;
+	cursor:pointer;
+	height:30px; 
+        width:120px;
+}
+
+.part1{
+	border:1px dotted #000099;
+        margin-top:-5px;
+}
+.part2{
+	border:1px dotted #000099;
+	padding:0px;
+	min-height:10px;
+        margin-top:-2px;
+        height:10px;
+}
+
+.part3{
+	border:1px dotted #000099;
+	padding:0px;
+	min-height:10px;
+}
+
+p {
+    margin-top:-10px;
+}
+h1{
+    text-align: center;
+}
+
+h4 {
+    margin-top:0px;
+}
+
+#footer{
+	margin-top: -2px;
+	text-align:center;
+	border: 1px solid #999;
+	width:100%;
+	height:35px;
+	font-size:20px;
+        background-color: khaki;
+        border-radius: 0px 0px 10px 10px;
+}

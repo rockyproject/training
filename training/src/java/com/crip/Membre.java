@@ -76,8 +76,7 @@ public class Membre {
                 + "'" + membre.postNom + "',"
                 + "'" + membre.prenom + "',"
                 + "'" + membre.sexe + "')"
-        ); 
-        
+        );   
     }
     
     public void modifier(){

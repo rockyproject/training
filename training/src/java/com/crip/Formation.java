@@ -1,18 +1,21 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.crip;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Date;
+import org.json.simple.parser.ParseException;
 
-@ManagedBean
-@RequestScoped
-public class FormationBean {
-
-    public FormationBean() {
-       
-    }
-    
+/**
+ *
+ * @author JUSTIN KABANZA
+ */
+public class Formation {
     private String idMembre;
     private String idFormateur;
     private Date dateDebut;
@@ -32,7 +35,7 @@ public class FormationBean {
     public String getIdFormateur() {
         return idFormateur;
     }
-    
+
     public void setIdFormateur(String idFormateur) {
         this.idFormateur = idFormateur;
     }
@@ -77,5 +80,13 @@ public class FormationBean {
         this.universite = universite;
     }
     
-    
+    public void Enregistrer(Formation form)throws ClassNotFoundException, SQLException, IOException, FileNotFoundException, ParseException{
+        DBConnection cnx=new DBConnection();
+        cnx.Execute_Query("Insert into Formation (IdMembre,IdFormateur,IdModule,"
+                + "Heure,DateDebut,DateFin,universite) VALUES ("
+                + "'"+ form.idMembre +"','"+ form.idFormateur +"','"+ form.idModule +"','"+ form.heure +"'"
+                + "'"+ form.dateDebut +"','"+ form.dateFin +"','"+ form.universite +"' )"
+        );
+        
+    }
 }
