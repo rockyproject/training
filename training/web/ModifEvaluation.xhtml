@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <span style="color: red">#{saisie.message}</span><br/>
+            <table>
+                <tr>
+                    <td>ID Membre</td>
+                    <td><h:inputText value="#{Saisie.evaluation.idMembre}"/></td>
+                </tr>
+                <tr>
+                    <td>ID Module</td>
+                    <td><h:inputText value="#{Saisie.evaluation.idModule}"/></td>
+                </tr>
+                <tr>
+                    <td>ID Evaluateur</td>
+                    <td><h:inputText value="#{Saisie.evaluation.idEvaluateur}"/></td>
+                </tr>
+                <tr>
+                    <td>Date</td>
+                    <td><h:inputText value="#{Saisie.evaluation.date}"/></td>
+                </tr>
+                <tr>
+                    <td>Cote</td>
+                    <td><h:inputText value="#{Saisie.evaluation.cote}"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><h:commandButton action="#{Saisie. modifierModifEvaluation()}" value="Modifier"/></td>
+                </tr>
+            </table>
+        </h:form>
+    </h:body>
+</html>
+

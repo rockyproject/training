@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <span style="color: red">#{saisie.message}</span><br/>
+            <table>
+                <tr>
+                    <td>ID Membre</td>
+                    <td><h:inputText value="#{Saisie.paiement.idMembre}"/></td>
+                </tr>
+                <tr>
+                    <td>ID Mobile</td>
+                    <td><h:inputText value="#{Saisie.paiement.idMobile}"/></td>
+                </tr>
+                <tr>
+                    <td>Date</td>
+                    <td><h:inputText value="#{Saisie.paiement.dateP}"/></td>
+                </tr>
+                <tr>
+                    <td>Montant</td>
+                    <td><h:inputText value="#{Saisie.paiement.montant}"/></td>
+                </tr>
+                <tr>
+                    <td>Monnaie</td>
+                    <td><h:inputText value="#{Saisie.paiement.monnaie}"/></td>
+                </tr>
+                <tr>
+                    <td>Taux</td>
+                    <td><h:inputText value="#{Saisie.paiement.taux}"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><h:commandButton action="#{Saisie. modifierModifPaiement()}" value="Modifier"/></td>
+                </tr>
+            </table>
+        </h:form>
+    </h:body>
+</html>
+
