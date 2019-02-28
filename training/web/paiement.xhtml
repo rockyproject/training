@@ -10,32 +10,36 @@
         <h:form>
             <table>
                 <tr>
-                    <td>ID Membre</td>
-                    <td><p:inputText value="#{paiementBean.idMembre}"/></td>
+                    <td>Numéro</td>
+                    <td><h:inputText value="#{saisie.paiement.numBord}"/></td>
                 </tr>
                 <tr>
-                    <td>ID Mobile</td>
-                    <td><p:inputText value="#{paiementBean.idMobile}"/></td>
+                    <td>ID Membre</td>
+                    <td><h:inputText value="#{saisie.paiement.idMembre}"/></td>
+                </tr>
+                <tr>
+                    <td>ID Module</td>
+                    <td><h:inputText value="#{saisie.paiement.idModule}"/></td>
                 </tr>
                 <tr>
                     <td>Date</td>
-                    <td><p:inputText value="#{paiementBean.dateP}"/></td>
+                    <td><h:inputText value="#{saisie.paiement.dateP}"/></td>
                 </tr>
                 <tr>
                     <td>Montant</td>
-                    <td><p:inputText value="#{paiementBean.montant}"/></td>
+                    <td><h:inputText value="#{saisie.paiement.montant}"/></td>
                 </tr>
                 <tr>
                     <td>Monnaie</td>
-                    <td><p:inputText value="#{paiementBean.monnaie}"/></td>
+                    <td><h:inputText value="#{saisie.paiement.monnaie}"/></td>
                 </tr>
                 <tr>
                     <td>Taux</td>
-                    <td><p:inputText value="#{paiementBean.taux}"/></td>
+                    <td><h:inputText value="#{saisie.paiement.taux}"/></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><p:commandButton value="Enregistrer"/></td>
+                    <td><h:commandButton action="#{saisie.EnregistrerPaiement()}" value="Enregistrer"/></td>
                 </tr>
             </table>
         </h:form>

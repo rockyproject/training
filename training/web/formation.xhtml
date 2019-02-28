@@ -8,26 +8,39 @@
     </h:head>
     <h:body>
         <h:form>
+            <span style="color: red">#{saisie.message}</span>
             <table>
                 <tr>
                     <td>ID Membre</td>
-                    <td><p:inputText value="#{formationBean.idMembre}"/></td>
+                    <td><h:inputText value="#{saisie.formation.idMembre}"/></td>
                 </tr>
                 <tr>
-                    <td>ID Formation</td>
-                    <td><p:inputText value="#{formationBean.idFormation}"/></td>
+                    <td>ID Formateur</td>
+                    <td><h:inputText value="#{saisie.formation.idFormateur}"/></td>
+                </tr>
+                <tr>
+                    <td>ID Module</td>
+                    <td><h:inputText value="#{saisie.formation.idModule}"/></td>
+                </tr>
+                <tr>
+                    <td>Heure</td>
+                    <td><h:inputText value="#{saisie.formation.heure}"/></td>
                 </tr>
                 <tr>
                     <td>Date début</td>
-                    <td><p:inputText value="#{formationBean.dateDebut}"/></td>
+                    <td><h:inputText value="#{saisie.formation.dateDebut}"/></td>
                 </tr>
                 <tr>
                     <td>Date fin</td>
-                    <td><p:inputText value="#{formationBean.dateFin}"/></td>
+                    <td><h:inputText value="#{saisie.formation.dateFin}"/></td>
+                </tr>
+                <tr>
+                    <td>Université</td>
+                    <td><h:inputText value="#{saisie.formation.universite}"/></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><p:commandButton value="Enregistrer"/></td>
+                    <td><h:commandButton action="#{saisie.EnregistrerFormation()}" value="Enregistrer"/></td>
                 </tr>
             </table>
         </h:form>

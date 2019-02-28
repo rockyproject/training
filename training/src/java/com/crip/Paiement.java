@@ -80,8 +80,13 @@ public class Paiement {
     
     public void Enregistrer(Paiement paie)throws ClassNotFoundException, SQLException, IOException, FileNotFoundException, ParseException{
         DBConnection cnx=new DBConnection();
-        cnx.Execute_Query("Insert into Paiement (NumBord,IdMembre,IdModule,DateP,Montant,Monnaie,Taux) values ("
-                + "'"+ paie.numBord +"','"+ paie.idMembre +"','"+ paie.idModule +"','"+ paie.dateP +"',"
-                + "'"+ paie.montant +"','"+ paie.monnaie +"','"+ paie.taux +"')");
+        cnx.Execute_Query("Insert into paiement(numbord,idmembre,idmodule,dateP,montant,monnaie,taux) values ("
+                + "'"+ paie.numBord +"',"
+                + "'"+ paie.idMembre +"',"
+                + "'"+ paie.idModule +"',"
+                + "'"+ paie.dateP +"',"
+                + "'"+ paie.montant +"',"
+                + "'"+ paie.monnaie +"',"
+                + "'"+ paie.taux +"')");
     }
 }

@@ -8,18 +8,24 @@
     </h:head>
     <h:body>
         <h:form>
+            <span style="color: red">#{saisie.message}</span><br/>
             <table>
                 <tr>
                     <td>ID</td>
-                    <td><p:inputText value="#{moduleBean.idModule}"/></td>
+                    <td><h:inputText value="#{saisie.module.idModule}"/></td>
                 </tr>
                 <tr>
                     <td>Designation</td>
-                    <td><p:inputText value="#{moduleBean.designation}"/></td>
+                    <td><h:inputText value="#{saisie.module.designation}"/></td>
+                </tr>
+                
+                <tr>
+                    <td>Nombre de Page</td>
+                    <td><h:inputText value="#{saisie.module.nbrePage}"/></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><p:commandButton value="Enregistrer"/></td>
+                    <td><h:commandButton action="#{saisie.EnregistrerModule()}" value="Enregistrer"/></td>
                 </tr>
             </table>
         </h:form>

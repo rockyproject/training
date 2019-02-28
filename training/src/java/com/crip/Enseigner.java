@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.crip;
 
 import java.io.FileNotFoundException;
@@ -36,7 +32,7 @@ public class Enseigner {
    
     public void Enregistrer(Enseigner ens)throws ClassNotFoundException, SQLException, IOException, FileNotFoundException, ParseException{
         DBConnection cnx=new DBConnection();
-        cnx.Execute_Query("Insert into  (idModule,idFormateur) Values ('"+ ens.idModule +"',"
+        cnx.Execute_Query("Insert into enseigner(idmodule,idformateur) Values ('"+ ens.idModule +"',"
                 + "'"+ ens.idFormateur +"')");
     }
 }

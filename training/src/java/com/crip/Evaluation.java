@@ -64,8 +64,11 @@ public class Evaluation {
     
     public void Enregistrer(Evaluation eval)throws ClassNotFoundException, SQLException, IOException, FileNotFoundException, ParseException{
         DBConnection cnx=new DBConnection();
-        cnx.Execute_Query("Insert into Formation (IdMembre,IdModule,IdEvaluateur,DateEv,Cote)VALUES ("
-                +"'"+ eval.idMembre +"','"+ eval.idModule +"','"+ eval.idEvaluateur +"',"
-                +"'"+ eval.date +"','"+ eval.cote +"')");
+        cnx.Execute_Query("Insert into evaluation(idmembre,idmodule,idevaluateur,dateEv,cote) VALUES ("
+                + "'"+ eval.idMembre +"',"
+                + "'"+ eval.idModule +"',"
+                + "'"+ eval.idEvaluateur +"',"
+                + "'"+ eval.date +"',"
+                + "'"+ eval.cote +"')");
     }
 }

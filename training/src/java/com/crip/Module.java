@@ -45,8 +45,11 @@ public class Module {
     
     public void Enregistrer(Module mod)throws ClassNotFoundException, SQLException, IOException, FileNotFoundException, ParseException{
         DBConnection cnx=new DBConnection();
-        cnx.Execute_Query("Insert into Module (IdModule,Design,nbrePage) VALUES ('"+ mod.idModule +"',"
-                + "'"+ mod.designation +"','"+ mod.nbrePage +"')");
+        cnx.Execute_Query("Insert into module (idmodule,design,nbrePage) VALUES ("
+                + "'"+ mod.idModule +"',"
+                + "'"+ mod.designation +"',"
+                + "'"+ mod.nbrePage +"')"
+                );
     
     }
 }

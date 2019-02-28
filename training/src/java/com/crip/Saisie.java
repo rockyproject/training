@@ -126,9 +126,10 @@ public class Saisie {
              formation.setIdMembre("");
              formation.setIdFormateur("");
              formation.setIdModule("");
-//             formation.setHeure("");
-//             formation.setDateDebut("");
-//             formation.setDateFin("");
+ //            formation.setHeure();
+  //           formation.setDateDebut("");
+  //           formation.setDateFin("");
+             formation.setUniversite("");
              
          }catch(ClassNotFoundException | SQLException | IOException | ParseException ex){
              message=ex.getMessage();
@@ -144,6 +145,7 @@ public class Saisie {
              evaluation.setIdMembre("");
              evaluation.setIdModule("");
              evaluation.setIdEvaluateur("");
+             //evaluation.setDate(date);
              evaluation.setCote(0);
              //evaluation.setDate(date);
          }catch(ClassNotFoundException | SQLException | IOException | ParseException ex){
@@ -160,6 +162,7 @@ public class Saisie {
              paiement.setNumBord("");
              paiement.setIdMembre("");
              paiement.setIdModule("");
+//             paiement.setDateP(dateP);
              paiement.setMontant(0);
              paiement.setMonnaie("");
              paiement.setTaux("");
@@ -183,6 +186,8 @@ public class Saisie {
          return "module";
      }
      
+     
+     
      public String EnregistrerEnseigner(){
          try{
              Enseigner ens=new Enseigner();
@@ -200,6 +205,7 @@ public class Saisie {
          try{
              Universite univ=new Universite();
              univ.Enregistrer(universite);
+             message="Enregistrement effectué avec succès";
              universite.setNomUniv("");
          }catch(ClassNotFoundException | SQLException | IOException | ParseException ex){
              message=ex.getMessage();
@@ -211,6 +217,7 @@ public class Saisie {
          try{
              Formateur form=new Formateur();
              form.Enregistrer(formateur);
+             message="Enregistrement effectué avec succès";
              formateur.setIdFormateur("");
          }catch(ClassNotFoundException | SQLException | IOException | ParseException ex){
              message=ex.getMessage();

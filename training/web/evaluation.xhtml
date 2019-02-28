@@ -8,30 +8,31 @@
     </h:head>
     <h:body>
         <h:form>
+            <span style="color: red">#{saisie.message}</span><br/>
             <table>
                 <tr>
                     <td>ID Membre</td>
-                    <td><p:inputText value="#{evaluationBean.idMembre}"/></td>
+                    <td><h:inputText value="#{saisie.evaluation.idMembre}"/></td>
                 </tr>
                 <tr>
                     <td>ID Module</td>
-                    <td><p:inputText value="#{evaluationBean.idModule}"/></td>
+                    <td><h:inputText value="#{saisie.evaluation.idModule}"/></td>
                 </tr>
                 <tr>
                     <td>ID Evaluateur</td>
-                    <td><p:inputText value="#{evaluationBean.idEvaluateur}"/></td>
+                    <td><h:inputText value="#{saisie.evaluation.idEvaluateur}"/></td>
                 </tr>
                 <tr>
                     <td>Date</td>
-                    <td><p:inputText value="#{evaluationBean.date}"/></td>
+                    <td><h:inputText value="#{saisie.evaluation.date}"/></td>
                 </tr>
                 <tr>
                     <td>Cote</td>
-                    <td><p:inputText value="#{evaluationBean.cote}"/></td>
+                    <td><h:inputText value="#{saisie.evaluation.cote}"/></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><p:commandButton value="Enregistrer"/></td>
+                    <td><h:commandButton action="#{saisie.EnregistrerEvaluation()}" value="Enregistrer"/></td>
                 </tr>
             </table>
         </h:form>

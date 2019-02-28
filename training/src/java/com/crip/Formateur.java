@@ -27,6 +27,6 @@ public class Formateur {
     
     public void Enregistrer(Formateur form)throws ClassNotFoundException, SQLException, IOException, FileNotFoundException, ParseException{
         DBConnection cnx=new DBConnection();
-        cnx.Execute_Query("Insert into Formateur (IdFormateur)Values ('"+ form.idFormateur +"')");
+        cnx.Execute_Query("Insert into Formateur(IdFormateur)Values ('"+ form.idFormateur +"')");
     }
 }
