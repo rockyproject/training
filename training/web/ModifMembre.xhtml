@@ -1,4 +1,4 @@
-ç<?xml version='1.0' encoding='UTF-8' ?>
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
@@ -6,37 +6,34 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <h:form>
-            
+        <h:form>   
             <span style="color: red">#{saisie.message}</span><br/>
-            
             <table>
                 <tr>
-                    <td> id </td>
-                    <td><h:inputText value="#{saisie.membre.idMembre}"/></td>
+                    <td>ID</td>
+                    <td><h:inputText value=""/></td>
                 </tr>
                 <tr>
-                    <td> nom </td>
-                    <td><h:inputText value="#{saisie.membre.nom}"/></td>
+                    <td>Nom</td>
+                    <td><h:inputText value=""/></td>
                 </tr>
                 <tr>
-                    <td> postnom </td>
-                    <td><h:inputText value="#{saisie.membre.postNom}"/></td>
+                    <td>PostNom</td>
+                    <td><h:inputText value=""/></td>
                 </tr>
                 <tr>
-                    <td> prenom </td>
-                    <td><h:inputText value="#{saisie.membre.prenom}"/></td>
+                    <td>Prenom</td>
+                    <td><h:inputText value=""/></td>
                 </tr>
                 <tr>
-                    <td> sexe </td>
-                    <td><h:inputText value="#{saisie.membre.sexe}"/></td>
+                    <td>Sexe</td>
+                    <td><h:inputText value=""/></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td><h:commandButton action="#{Saisie. modifierMembre()}" value="Enregistrer"/></td>
+                <td></td>
+                <td><h:commandButton value="Modifier"/></td>
                 </tr>
-            </table>
-                        
+            </table>           
         </h:form>
     </h:body>
 </html>
