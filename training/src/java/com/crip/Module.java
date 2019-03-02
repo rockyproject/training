@@ -43,6 +43,14 @@ public class Module {
         this.nbrePage = nbrePage;
     }
     
+    public Module(){
+    
+    }
+    public Module(String idModule,String designation, int nbrePage){
+    this.idModule=idModule;
+    this.designation=designation;
+    this.nbrePage=nbrePage;
+    }
     public void Enregistrer(Module mod)throws ClassNotFoundException, SQLException, IOException, FileNotFoundException, ParseException{
         DBConnection cnx=new DBConnection();
         cnx.Execute_Query("Insert into module (idmodule,design,nbrePage) VALUES ("
