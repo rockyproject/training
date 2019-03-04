@@ -6,8 +6,11 @@
 package com.crip;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import org.json.simple.parser.ParseException;
 /**
  *
@@ -78,6 +81,20 @@ public class Paiement {
         this.taux = taux;
     }
     
+    public Paiement(){
+        
+    }
+    
+    public Paiement(String numBord,String idMembre, String idModule, Date dateP, float montant, String monnaie, String taux){
+        this.numBord=numBord;
+        this.idMembre=idMembre;
+        this.idModule=idModule;
+        this.dateP=dateP;
+        this.montant=montant;
+        this.monnaie=monnaie;
+        this.taux=taux;
+    }
+    
     public void Enregistrer(Paiement paie)throws ClassNotFoundException, SQLException, IOException, FileNotFoundException, ParseException{
         DBConnection cnx=new DBConnection();
         cnx.Execute_Query("Insert into paiement(numbord,idmembre,idmodule,dateP,montant,monnaie,taux) values ("
@@ -88,5 +105,37 @@ public class Paiement {
                 + "'"+ paie.montant +"',"
                 + "'"+ paie.monnaie +"',"
                 + "'"+ paie.taux +"')");
+    }
+    
+    public List<Paiement> listePaiement() throws ClassNotFoundException, SQLException, IOException, FileNotFoundException, ParseException{
+        List<Paiement> lst = new ArrayList<>();
+        
+            DBConnection conn = new DBConnection();
+            ResultSet result = conn.Data_Source(
+                    "SELECT "
+                            +"numbord,"
+                            +"(select concat (nom,' ',postnom,' ',prenom) from Membre where IdMembre=Paiement.IdMembre)as membre,"
+                            +"design,"
+                            +"DateP,"
+                            +"Montant,"
+                            +"Monnaie,"
+                            +"Taux "
+                            +"from Paiement inner join module on Paiement.IdModule=Module.IdModule"
+                        );
+            
+            while(result.next())
+            {
+                lst.add(new Paiement(
+                        result.getString("numbord"),
+                        result.getString("membre"),
+                        result.getString("design"),                       
+                        result.getDate("DateP"),
+                        result.getFloat("Montant"),
+                        result.getString("Monnaie"),
+                        result.getString("Taux")
+                        )
+                );
+            }
+        return lst;
     }
 }
