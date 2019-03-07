@@ -145,7 +145,7 @@ public class Saisie {
              evaluation.setIdMembre("");
              evaluation.setIdModule("");
              evaluation.setIdEvaluateur("");
-             //evaluation.setDate(date);
+             //evaluation.setDate();
              evaluation.setCote(0);
              //evaluation.setDate(date);
          }catch(ClassNotFoundException | SQLException | IOException | ParseException ex){

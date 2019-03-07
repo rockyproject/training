@@ -7,7 +7,10 @@ package com.crip;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import org.json.simple.parser.ParseException;
 
 /**
@@ -59,5 +62,31 @@ public class Module {
                 + "'"+ mod.nbrePage +"')"
                 );
     
+    }
+    
+    public List<Module> listeModule() throws ClassNotFoundException, SQLException, IOException, FileNotFoundException, ParseException{
+        List<Module> lst = new ArrayList<>();
+        
+            DBConnection conn = new DBConnection();
+            ResultSet result = conn.Data_Source(
+                    "SELECT "
+                            + "idModule, "
+                            + "Design, "
+                            + "nbrePage "                         
+                            + "FROM Module"
+            );
+            
+            while(result.next())
+            {
+                lst.add(new Module(
+                        result.getString("idModule"),
+                        result.getString("Design"),
+                        result.getInt("nbrePage")
+                       
+                        )
+                );
+            }
+        
+        return lst;
     }
 }
