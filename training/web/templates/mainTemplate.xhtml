@@ -14,50 +14,57 @@
     </h:head>
 
     <h:body>
-        <table cellspacing="10px">
-            <tr>
-                <td id="top" colspan="2">
-                    <ui:insert name="top">
-                        <p:menubar>
-                            <p:submenu label="Saisie">
-                                <p:menuitem value="Module" url="module.xhtml"/>
-                                <p:menuitem value="Membre" url="membre.xhtml"/>
-                                <p:menuitem value="Formation" url="formation.xhtml"/>
-                                <p:menuitem value="Paiement" url="paiement.xhtml"/>
-                                <p:menuitem value="Evaluation" url="evaluation.xhtml"/>
-                                <p:menuitem value="Formateur" url="formateur.xhtml"/>
-                                <p:menuitem value="Enseigner" url="enseigner.xhtml"/>
-                                <p:menuitem value="Universite" url="universite.xhtml"/>
-                                <p:menuitem value="Module au Formateur" url="SelectFormateur.xhtml"/>
-                            </p:submenu>
-                            <p:submenu label="Mise à jour">
-                                <p:menuitem value="Module" url="#"/>
-                                <p:menuitem value="Membre" url="selectMembre.xhtml"/>
-                                <p:menuitem value="Formation" url="#"/>
-                                <p:menuitem value="Paiement" url="#"/>
-                                <p:menuitem value="Evaluation" url="#"/>
-                                <p:menuitem value="Formateur" url="#"/>
-                                <p:menuitem value="Enseigner" url="#"/>
-                                <p:menuitem value="Universite" url="#"/>
-                            </p:submenu>
-                        </p:menubar>
-                    </ui:insert>
-                </td>
-            </tr>
-            <tr>
-                <td id="left">
-                    <ui:insert name="left">Left</ui:insert>
-                </td>
-                <td id="content">
-                    <ui:insert name="content">Content</ui:insert>
-                </td>
-            </tr>
-            <tr>
-                <td id="bottom" colspan="2">
-                    <ui:insert name="bottom">Bottom</ui:insert>
-                </td>
-            </tr>
-        </table>
+        <h:form>
+            <table cellspacing="10px">
+                <tr>
+                    <td id="top" colspan="2">
+                        <ui:insert name="top">
+                            <p:menubar>
+                                <p:submenu label="Saisie">
+                                    <p:menuitem>
+                                        <h:commandLink action="#{inscription.selectModule()}" value="Inscription à la formation">
+                                            <f:setPropertyActionListener target="#{inscription.action}" value="Inscription"/>
+                                        </h:commandLink>
+                                    </p:menuitem>
+                                    <p:menuitem value="Module" url="module.xhtml"/>
+                                    <p:menuitem value="Membre" url="membre.xhtml"/>
+                                    <p:menuitem value="Formation" url="formation.xhtml"/>
+                                    <p:menuitem value="Paiement" url="paiement.xhtml"/>
+                                    <p:menuitem value="Evaluation" url="evaluation.xhtml"/>
+                                    <p:menuitem value="Formateur" url="formateur.xhtml"/>
+                                    <p:menuitem value="Enseigner" url="enseigner.xhtml"/>
+                                    <p:menuitem value="Universite" url="universite.xhtml"/>
+                                    <p:menuitem value="Module au Formateur" url="SelectFormateur.xhtml"/>
+                                </p:submenu>
+                                <p:submenu label="Mise à jour">
+                                    <p:menuitem value="Module" url="#"/>
+                                    <p:menuitem value="Membre" url="selectMembre.xhtml"/>
+                                    <p:menuitem value="Formation" url="#"/>
+                                    <p:menuitem value="Paiement" url="#"/>
+                                    <p:menuitem value="Evaluation" url="#"/>
+                                    <p:menuitem value="Formateur" url="#"/>
+                                    <p:menuitem value="Enseigner" url="#"/>
+                                    <p:menuitem value="Universite" url="#"/>
+                                </p:submenu>
+                            </p:menubar>
+                        </ui:insert>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="left">
+                        <ui:insert name="left">Left</ui:insert>
+                    </td>
+                    <td id="content">
+                        <ui:insert name="content">Content</ui:insert>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="bottom" colspan="2">
+                        <ui:insert name="bottom">Bottom</ui:insert>
+                    </td>
+                </tr>
+            </table>
+        </h:form>
     </h:body>
 
 </html>

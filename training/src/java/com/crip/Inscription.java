@@ -120,6 +120,7 @@ public class Inscription {
     public String selectModule()
     {
         return "selectModule";
+        //return "login";
     }
     
     //AFFICHAGE DE LA PAGE DE SELECTION DU MEMBRE

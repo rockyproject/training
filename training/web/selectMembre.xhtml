@@ -12,7 +12,7 @@
     <h:body rendered="#{login.session() eq 1}">
          
         <h:form>
-            <p:dataTable var="membre" value="#{saisie.membre.listeMembres()}">
+            <p:dataTable var="membre" value="#{membre.liste()}">
                 <p:column headerText="ID">
                     <h:outputText value="#{membre.idMembre}"/>
                 </p:column>

@@ -111,7 +111,7 @@ public class Membre {
         
     }
     
-    public List<Membre> listeMembres(){
+    public List<Membre> liste(){
         List<Membre> lst = new ArrayList<>();
         try{
             DBConnection conn = new DBConnection();
