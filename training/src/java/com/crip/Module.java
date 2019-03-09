@@ -102,6 +102,7 @@ public class Module {
     
     }
     
+
     //LISTE DES MODULES
     //=================
     public List<Module> liste(){
@@ -159,5 +160,32 @@ public class Module {
                 break;
         }
         return valeur;
+    }
+
+    public List<Module> listeModule() throws ClassNotFoundException, SQLException, IOException, FileNotFoundException, ParseException{
+        List<Module> lst = new ArrayList<>();
+        
+            DBConnection conn = new DBConnection();
+            ResultSet result = conn.Data_Source(
+                    "SELECT "
+                            + "idModule, "
+                            + "Design, "
+                            + "nbrePage "                         
+                            + "FROM Module"
+            );
+            
+            while(result.next())
+            {
+                lst.add(new Module(
+                        result.getString("idModule"),
+                        result.getString("Design"),
+                        result.getInt("nbrePage")
+                       
+                        )
+                );
+            }
+        
+        return lst;
+
     }
 }
