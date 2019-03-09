@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h1>Inscription à la Formation</h1>
+                
+        <h:form>
+            <span style="color: red">#{inscription.message}</span><br/>
+            <table>
+                <tr>
+                    <td><h:outputText value="Membre"/></td>
+                    <td><h:outputText value="#{inscription.membre.nom} #{inscription.membre.postNom} #{inscription.membre.prenom}"/></td>
+                </tr>
+                <tr>
+                    <td><h:outputText value="Module"/></td>
+                    <td><h:outputText value="#{inscription.module.designation}"/></td>
+                </tr>
+                <tr>
+                    <td><h:outputText value="Numero Bordereau"/></td>
+                    <td><h:inputText value="#{inscription.numBV}"/></td>
+                </tr>
+                <tr>
+                    <td><h:outputText value="Date de Paiement"/></td>
+                    <td><p:calendar value="#{inscription.dateBV}" mode="popup"/></td>
+                </tr>
+                <tr>
+                    <td><h:outputText value="Montant"/></td>
+                    <td><h:inputText value="#{inscription.montant}"/></td>
+                </tr>
+                <tr>
+                    <td><h:outputText value="Monnaie"/></td>
+                    <td>
+                        <h:selectOneMenu value="#{inscription.monnaie}">
+                            <f:selectItem itemValue="" itemLabel=""/>
+                            <f:selectItem itemValue="USD" itemLabel="USD"/>
+                            <f:selectItem itemValue="FC" itemLabel="FC"/>
+                        </h:selectOneMenu>
+                    </td>
+                </tr>
+                <tr>
+                    <td><h:outputText value="Taux"/></td>
+                    <td><h:inputText value="#{inscription.taux}"/></td>
+                </tr>
+                <tr>
+                    <td><h:commandButton value="Retour" action="#{inscription.retour()}"/></td>
+                    <td><h:commandButton value="Enregistrer" action="#{inscription.enregistrer()}"/></td>
+                </tr>
+            </table>
+        </h:form>
+    </h:body>
+</html>
+

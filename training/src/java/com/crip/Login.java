@@ -57,4 +57,9 @@ public class Login {
     public String annuler(){
         return "index";
     }
+    
+    public int session()
+    {
+        return 1;
+    }
 }

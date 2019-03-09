@@ -1,4 +1,4 @@
-﻿Create database GestionFormation;
+/*Create database GestionFormation;
 use GestionFormation
 
 Create table Membre
@@ -114,3 +114,6 @@ design,datedebut,datefin from Membre inner join Formation on Membre.IdMembre=For
 =Module.idModule
 
 Select  concat(nom,' ',postnom) as noms from membre
+*/
+
+ALTER TABLE paiement RENAME TO inscription;
