@@ -3,51 +3,55 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
         <h:form>
             
-            <span style="color: red">#{saisie.message}</span><br/>
+            <span style="color: red">#{membre.message}</span><br/>
             
             <ui:remove>
-            <span style="color: red">#{saisie.membre.idMembre}</span><br/>
+            <span style="color: red">#{membre.idMembre}</span><br/>
             
-            <h:inputText value="#{saisie.membre.idMembre}"/>
+            <h:inputText value="#{membre.idMembre}"/>
             </ui:remove>
             
             <table>
                 <tr>
                     <td> id </td>
-                    <td><h:inputText value="#{saisie.membre.idMembre}"/></td>
+                    <td><h:inputText value="#{membre.idMembre}"/></td>
                 </tr>
                 <tr>
                     <td> nom </td>
-                    <td><h:inputText value="#{saisie.membre.nom}"/></td>
+                    <td><h:inputText value="#{membre.nom}"/></td>
                 </tr>
                 <tr>
                     <td> postnom </td>
-                    <td><h:inputText value="#{saisie.membre.postNom}"/></td>
+                    <td><h:inputText value="#{membre.postNom}"/></td>
                 </tr>
                 <tr>
                     <td> prenom </td>
-                    <td><h:inputText value="#{saisie.membre.prenom}"/></td>
+                    <td><h:inputText value="#{membre.prenom}"/></td>
                 </tr>
                 <tr>
                     <td> sexe </td>
-                    <td><h:inputText value="#{saisie.membre.sexe}"/></td>
+                    <td>
+                        <h:selectOneMenu value="#{membre.sexe}">
+                            <f:selectItem itemValue=""/>
+                            <f:selectItem itemValue="Masculin"/>
+                            <f:selectItem itemValue="Feminin"/>
+                        </h:selectOneMenu>
+                    </td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td><h:commandButton action="#{saisie.enregistrerMembre()}" value="Enregistrer"/></td>
+                    <td><h:commandButton action="#{membre.retour()}" value="Retour"/></td>
+                    <td><h:commandButton action="#{membre.enregistrer()}" value="Enregistrer"/></td>
                 </tr>
             </table>
             
-            <ui:remove>
-            <h:commandButton action="#{saisie.enregistrerMembre()}" value="Enregistrer"/>
-            </ui:remove>
         </h:form>
     </h:body>
 </html>

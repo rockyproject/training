@@ -92,15 +92,32 @@ public class Membre {
         this.action = action;
     }
     
-    public void enregistrer(Membre membre) throws ClassNotFoundException, SQLException, IOException, FileNotFoundException, ParseException{
-        DBConnection conn = new DBConnection();
-        conn.Execute_Query("INSERT INTO membre(idmembre, nom, postnom, prenom, sexe) VALUES ("
-                + "'" + membre.idMembre + "'," 
-                + "'" + membre.nom + "'," 
-                + "'" + membre.postNom + "',"
-                + "'" + membre.prenom + "',"
-                + "'" + membre.sexe + "')"
-        );   
+    public String saisie()
+    {
+        return "membre";
+    }
+    
+    public String enregistrer(){
+                
+        try {
+            DBConnection conn = new DBConnection();
+            conn.Execute_Query("INSERT INTO membre(idmembre, nom, postnom, prenom, sexe) VALUES ("
+                    + "'" + idMembre + "'," 
+                    + "'" + nom + "'," 
+                    + "'" + postNom + "',"
+                    + "'" + prenom + "',"
+                    + "'" + sexe + "')"
+            ); 
+            message = "Enregistrement effectué avec succès";
+            idMembre = "";
+            nom = "";
+            postNom = "";
+            prenom = "";
+            sexe = "";
+        } catch (ClassNotFoundException | SQLException | IOException | ParseException ex) {
+            message= ex.getMessage();
+        }
+        return "membre";
     }
     
     public void modifier(){
@@ -172,5 +189,11 @@ public class Membre {
              message=ex.getMessage();
         }
         return lst;
+    }
+    
+    //RETOUR
+    //======
+    public String retour(){
+        return "main";
     }
 }

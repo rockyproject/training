@@ -23,9 +23,6 @@ public class Module {
     private String designation;
     private int nbrePage;    
     private String message;
-    //private Module sModule = new Module();
-    
-    //@ManagedProperty(value="#{param.action}")
     private String action;
     
     //CONSTRUCTEUR
@@ -81,25 +78,32 @@ public class Module {
     public void setAction(String action) {
         this.action = action;
     }
-
-    /*public Module getsModule() {
-        return sModule;
+ 
+    //SAISIE
+    //=====
+    public String saisie()
+    {
+        return "module";
     }
-
-    public void setsModule(Module sModule) {
-        this.sModule = sModule;
-    }*/
-    
+            
     //ENREGISTREMENT
     //==============
-    public void Enregistrer(Module mod)throws ClassNotFoundException, SQLException, IOException, FileNotFoundException, ParseException{
-        DBConnection cnx=new DBConnection();
+    public String enregistrer(){        
+        try {
+            DBConnection cnx=new DBConnection();
         cnx.Execute_Query("Insert into module (idmodule,design,nbrePage) VALUES ("
-                + "'"+ mod.idModule +"',"
-                + "'"+ mod.designation +"',"
-                + "'"+ mod.nbrePage +"')"
-                );
-    
+                + "'"+ idModule +"',"
+                + "'"+ designation +"',"
+                +  nbrePage +")"
+                ); 
+            message = "Enregistrement effectué avec succès";
+            idModule = "";
+            designation = "";
+            nbrePage = 0;
+        } catch (ClassNotFoundException | SQLException | IOException | ParseException ex) {
+            message= ex.getMessage();
+        }
+        return "module";
     }
     
 
@@ -187,5 +191,11 @@ public class Module {
         
         return lst;
 
+    }
+    
+    //RETOUR
+    //======
+    public String retour(){
+        return "main";
     }
 }

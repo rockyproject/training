@@ -1,0 +1,35 @@
+            FONCTIONNALITES DU SYSTEME
+            =========================
+ 
+1.	Tout membre doit s’authentifier pour accéder aux fonctionnalités du système;
+
+2.	Les fonctionnalités du système sont accessibles selon le rôle utilisateur;
+
+3.	Le percepteur enregistre les nouveaux membres;
+
+4.	Le percepteur enregistre des nouveaux modules de formation des supports validés dans le système;
+
+5.	Une commission des membres statuent pour valider un module;
+
+6.	Le percepteur enregistre les paiements des membres dans le système sur base des bordereaux;
+
+7.	Le percepteur affecte un formateur aux membres inscrits pour une formation selon leur disponibilité;
+
+8.	Le percepteur ajoute des nouveaux formateurs selon le rapport d'évaluation et spécifie les modules dans lesquels ils peuvent former;
+
+9.	Le percepteur enregistre les auteurs des modules sur base du rapport d'évaluation des modules;
+
+10.	Le membre indique sa disponibilité par rapport au temps lors de son inscription;
+
+11.	La formation doit comprendre seulement 5 membres;
+
+12.	A la fin de chaque formation le membre doit  développer un projet qui concerne la matière dans laquelle il a été formé;
+
+13.	Le membre doit être évalué  à chaque formation;
+
+15.	Chaque membre doit être capable de suivre son compte par rapport au droit d’auteur, aux formations qu'il a données et aux commissions d'évaluation dans lesquelles il était membre;
+
+16.	Pour recevoir un chèque de retrait, le membre doit imprimer la lettre de créance et la présenter au percepteur. Après vérification du compte du membre, le percepteur signe un chèque, concomitamment avec l'université, au membre pour le retrait;
+  
+17.	Le percepteur enregistre le chèque avant de le cède au membre.
+

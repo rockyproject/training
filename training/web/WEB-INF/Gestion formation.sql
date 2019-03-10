@@ -117,3 +117,5 @@ Select  concat(nom,' ',postnom) as noms from membre
 */
 
 ALTER TABLE paiement RENAME TO inscription;
+
+alter table membre alter column sexe type varchar(15);

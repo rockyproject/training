@@ -1,0 +1,25 @@
+DESIGN PATTERN DU SYSTEME
+=========================
+1.  Les modèles sont faits avec des Managedbean
+
+2.  A part les champs prévus dans la classe, chaque ManagedBean aura:
+        * un champ action : controle l'action sur les données (saisie, modification, suppression)
+        * un champ message : permet de retourner le message d'erreur
+
+3.  Les ManagedBean auront les méthodes suivantes:
+        * enregistrer()
+        * modifier()
+        * supprimer()
+        * liste()
+        * saisie()
+        * selection() : permet de specifier la page à afficher lors de la selection de l'element dans le dataTable selon l'action 
+        * retour()
+
+4. Tous les ManagedBean impliqués dans les processus auront une portée Sessionscoped
+
+5. La transmission des données dans les paramètres seront fait avec <f:setPropertyActionlistener>
+
+6. Les processus seront presentés par des diagrammes de séquences
+
+7. Les diagrammes de séquences et le schéma de la base de données sont stockés dans le dossier ressources/images/
+
