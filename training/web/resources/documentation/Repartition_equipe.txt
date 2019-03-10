@@ -1,0 +1,23 @@
+REPARTITION DE L'EQUIPE
+=======================
+
+1. JOYS
+=======
+- Documentation : Ecrire le document du projet, le statut, le reglèment interieur, etc.
+
+2. EZECHIEL
+===========
+Travailler sur l'analyse et le test du système :
+    - Mettre à jour la base de données
+    - Concevoir et créer des diagrammes de séquences des processus
+    - Mettre à jour le schéma de la base de données
+    - Planifier, executer et documenter les tests du système
+
+3. JUSTIN ET KUDRA
+==================
+Programmation:
+    - Programmer les processus selon les diagrammes de séquences
+
+4. JEROME
+=========
+Analyse, coordination du projet et conception des modèles

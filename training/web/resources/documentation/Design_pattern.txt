@@ -23,3 +23,11 @@ DESIGN PATTERN DU SYSTEME
 
 7. Les diagrammes de séquences et le schéma de la base de données sont stockés dans le dossier ressources/images/
 
+8. Les dataTable des pages de selection auront, en dehors des données à afficher, les boutons selectionner, modifier et supprimer
+
+9. Les boutons modifier des dataTable des pages de selection seront visible pour les percepteurs et administrateurs du système,  tandisque supprimer pour les administrateurs seuls
+
+10. Les historiques de suppression et modification seront stockés dans une table au format json
+
+  
+
