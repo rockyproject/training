@@ -25,7 +25,11 @@
                 </tr>
                 <tr>
                     <td><h:commandButton action="#{module.retour()}" value="Retour"/></td>
-                    <td><h:commandButton action="#{module.enregistrer()}" value="Enregistrer"/></td>
+                    <td>
+                        <h:commandButton action="#{module.enregistrer()}" value="Enregistrer" rendered="#{module.action eq 'saisie'}"/>
+                        <h:commandButton action="#{module.modifier()}" value="Modifier" rendered="#{module.action eq 'modification'}"/>
+                        <h:commandButton action="#{module.supprimer()}" value="Supprimer" rendered="#{module.action eq 'suppression'}"/>
+                    </td>
                 </tr>
             </table>
         </h:form>

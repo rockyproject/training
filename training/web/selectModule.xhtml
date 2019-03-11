@@ -9,6 +9,7 @@
     </h:head>
     <h:body>
         <h:form>
+            
             <p:dataTable var="modules" value="#{module.liste()}">
                 <p:column headerText="ID">
                     <h:outputText value="#{modules.idModule}" />
@@ -23,8 +24,25 @@
                      <h:commandButton action="#{inscription.selectMembre()}" value="Selectionner">
                          <f:setPropertyActionListener target="#{inscription.module}" value="#{modules}"/>
                      </h:commandButton>
+                     <h:commandButton action="#{module.saisie()}" value="Modifier">
+                         <f:setPropertyActionListener target="#{miseAjour.module}" value="#{modules}"/>
+                         <f:setPropertyActionListener target="#{module.idModule}" value="#{modules.idModule}"/>
+                         <f:setPropertyActionListener target="#{module.designation}" value="#{modules.designation}"/>
+                         <f:setPropertyActionListener target="#{module.nbrePage}" value="#{modules.nbrePage}"/>
+                         <f:setPropertyActionListener target="#{module.action}" value="modification"/>
+                     </h:commandButton>
+                     <h:commandButton action="#{module.saisie()}" value="Supprimer">
+                         <f:setPropertyActionListener target="#{miseAjour.module}" value="#{modules}"/>
+                         <f:setPropertyActionListener target="#{module.idModule}" value="#{modules.idModule}"/>
+                         <f:setPropertyActionListener target="#{module.designation}" value="#{modules.designation}"/>
+                         <f:setPropertyActionListener target="#{module.nbrePage}" value="#{modules.nbrePage}"/>
+                         <f:setPropertyActionListener target="#{module.action}" value="suppression"/>
+                     </h:commandButton>
                 </p:column>
             </p:dataTable>
+            <br/>
+            <h:commandButton action="#{module.retour()}" value="Annuler"/>
+            <h:commandButton action="#{module.saisie()}" value="Nouveau"/>
         </h:form>
     </h:body>
 </html>

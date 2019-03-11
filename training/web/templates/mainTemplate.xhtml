@@ -45,7 +45,11 @@
                                     <p:menuitem value="Module au Formateur" url="SelectFormateur.xhtml"/>
                                 </p:submenu>
                                 <p:submenu label="Mise à jour">
-                                    <p:menuitem value="Module" url="#"/>
+                                    <p:menuitem>
+                                        <h:commandLink action="#{module.selection()}" value="Module">
+                                            
+                                        </h:commandLink>
+                                    </p:menuitem>
                                     <p:menuitem value="Membre" url="selectMembre.xhtml"/>
                                     <p:menuitem value="Formation" url="#"/>
                                     <p:menuitem value="Paiement" url="#"/>

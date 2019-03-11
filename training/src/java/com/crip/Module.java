@@ -19,12 +19,15 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 
 public class Module {
+    @ManagedProperty(value="#{miseAjour}")
+    MiseAjour maj;
+    
     private String idModule;
     private String designation;
     private int nbrePage;    
     private String message;
     private String action;
-    
+            
     //CONSTRUCTEUR
     //============
     public Module(){
@@ -78,7 +81,15 @@ public class Module {
     public void setAction(String action) {
         this.action = action;
     }
- 
+
+    public MiseAjour getMaj() {
+        return maj;
+    }
+
+    public void setMaj(MiseAjour maj) {
+        this.maj = maj;
+    }
+    
     //SAISIE
     //=====
     public String saisie()
@@ -91,12 +102,12 @@ public class Module {
     public String enregistrer(){        
         try {
             DBConnection cnx=new DBConnection();
-        cnx.Execute_Query("Insert into module (idmodule,design,nbrePage) VALUES ("
+            cnx.Execute_Query("Insert into module (idmodule,design,nbrePage) VALUES ("
                 + "'"+ idModule +"',"
                 + "'"+ designation +"',"
                 +  nbrePage +")"
                 ); 
-            message = "Enregistrement effectué avec succès";
+            message = "";
             idModule = "";
             designation = "";
             nbrePage = 0;
@@ -106,6 +117,48 @@ public class Module {
         return "module";
     }
     
+    //MODIFICATION
+    //============
+    public String modifier(){
+        //this.message = maj.getModule().designation;
+        try {
+            DBConnection cnx=new DBConnection();
+            cnx.Execute_Query("UPDATE module SET "
+                + "idmodule='"+ idModule +"', "
+                + "design='"+ designation +"', "
+                + "nbrepage=" + nbrePage +" "
+                + "WHERE "
+                + "idmodule='" + maj.getModule().idModule + "'"
+                ); 
+            message = "";
+            idModule = "";
+            designation = "";
+            nbrePage = 0;
+            return "main";
+        } catch (ClassNotFoundException | SQLException | IOException | ParseException ex) {
+            message= ex.getMessage();
+            return "module";
+        }
+        
+    }
+    
+    public String supprimer(){
+        try {
+            DBConnection cnx=new DBConnection();
+            cnx.Execute_Query("DELETE FROM module "
+                + "WHERE "
+                + "idmodule='" + maj.getModule().idModule + "'"
+                ); 
+            message = "";
+            idModule = "";
+            designation = "";
+            nbrePage = 0;
+            return "selectModule";
+        } catch (ClassNotFoundException | SQLException | IOException | ParseException ex) {
+            message= ex.getMessage();
+            return "module";
+        }
+    }
 
     //LISTE DES MODULES
     //=================
@@ -120,7 +173,8 @@ public class Module {
                             + "idmodule, "
                             + "design, "
                             + "nbrepage "                            
-                            + "FROM module"
+                            + "FROM module "
+                            + "ORDER BY design"
             );
             
             while(result.next())
