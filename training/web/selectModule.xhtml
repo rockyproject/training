@@ -42,7 +42,9 @@
             </p:dataTable>
             <br/>
             <h:commandButton action="#{module.retour()}" value="Annuler"/>
-            <h:commandButton action="#{module.saisie()}" value="Nouveau"/>
+            <h:commandButton action="#{module.saisie()}" value="Nouveau">
+                <f:setPropertyActionListener target="#{module.action}" value="saisie"/>
+            </h:commandButton>
         </h:form>
     </h:body>
 </html>
