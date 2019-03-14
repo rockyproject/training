@@ -9,28 +9,15 @@
     <h:head>
         <title>Facelet Title</title>
     </h:head>
-    <h:body rendered="#{login.session() eq 1}">
-         
+    <h:body>
         <h:form>
-            <p:dataTable var="membre" value="#{membre.liste()}">
-                <p:column headerText="ID">
-                    <h:outputText value="#{membre.idMembre}"/>
-                </p:column>
-                <p:column headerText="Nom">
-                    <h:outputText value="#{membre.nom}"/>
-                </p:column>
-                <p:column headerText="PostNom">
-                    <h:outputText value="#{membre.postNom}"/>
-                </p:column>
-                <p:column headerText="Prenom">
-                    <h:outputText value="#{membre.prenom}"/>
+            <p:dataTable var="universite" value="#{universite.liste()}">
+                <p:column headerText="Nom institution">
+                    <h:outputText value="#{universite.nomUniv}"/>
                 </p:column>
                 <p:column headerText="Action">
-                    <h:commandButton action="#{inscription.saisie()}" value="Selectionner" rendered="#{inscription.action eq 'Inscription'}">
-                        <f:setPropertyActionListener target="#{inscription.membre}" value="#{membre}"/>                        
-                    </h:commandButton>
-                    <h:commandButton action="#{inscription.saisie()}" value="Selectionner" rendered="#{evaluation.action eq 'Evaluation'}">
-                        <f:setPropertyActionListener target="" value=""/>                        
+                    <h:commandButton action="#{formation.Saisie()}" value="Selectionner">
+                        <f:setPropertyActionListener target="#{formation.universite}" value="#{universite}"/>                        
                     </h:commandButton>
                 </p:column>
                 <p:column headerText="Modification" rendered="#{membre.action eq 'maj'}">
@@ -43,7 +30,6 @@
                 </p:column>
             </p:dataTable>
         </h:form>
-                
     </h:body>
 </html>
 

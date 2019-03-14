@@ -9,28 +9,24 @@
     <h:head>
         <title>Facelet Title</title>
     </h:head>
-    <h:body rendered="#{login.session() eq 1}">
-         
+    <h:body>
         <h:form>
-            <p:dataTable var="membre" value="#{membre.liste()}">
+            <p:dataTable var="formateur" value="#{membre.listeFormateur()}">
                 <p:column headerText="ID">
-                    <h:outputText value="#{membre.idMembre}"/>
+                    <h:outputText value="#{formateur.idMembre}"/>
                 </p:column>
                 <p:column headerText="Nom">
-                    <h:outputText value="#{membre.nom}"/>
+                    <h:outputText value="#{formateur.nom}"/>
                 </p:column>
                 <p:column headerText="PostNom">
-                    <h:outputText value="#{membre.postNom}"/>
+                    <h:outputText value="#{formateur.postNom}"/>
                 </p:column>
                 <p:column headerText="Prenom">
-                    <h:outputText value="#{membre.prenom}"/>
+                    <h:outputText value="#{formateur.prenom}"/>
                 </p:column>
                 <p:column headerText="Action">
-                    <h:commandButton action="#{inscription.saisie()}" value="Selectionner" rendered="#{inscription.action eq 'Inscription'}">
-                        <f:setPropertyActionListener target="#{inscription.membre}" value="#{membre}"/>                        
-                    </h:commandButton>
-                    <h:commandButton action="#{inscription.saisie()}" value="Selectionner" rendered="#{evaluation.action eq 'Evaluation'}">
-                        <f:setPropertyActionListener target="" value=""/>                        
+                    <h:commandButton action="#{formation.selectUniversite()}" value="Selectionner" rendered="#{formation.action eq 'Formation'}">
+                        <f:setPropertyActionListener target="#{formation.membre}" value="#{formateur}"/>                        
                     </h:commandButton>
                 </p:column>
                 <p:column headerText="Modification" rendered="#{membre.action eq 'maj'}">
@@ -43,7 +39,7 @@
                 </p:column>
             </p:dataTable>
         </h:form>
-                
+       
     </h:body>
 </html>
 

@@ -191,6 +191,37 @@ public class Membre {
         return lst;
     }
     
+     public List<Membre> listeFormateur(){
+        List<Membre> lst = new ArrayList<>();
+        try{
+            DBConnection conn = new DBConnection();
+            ResultSet result = conn.Data_Source(
+                    "SELECT "
+                            + "idmembre, "
+                            + "nom, "
+                            + "postnom, "
+                            + "prenom, "
+                            + "sexe "
+                            + "FROM membre inner join Formateur on membre.idMembre=Formateur.idFormateur"
+            );
+            
+            while(result.next())
+            {
+                lst.add(new Membre(
+                        result.getString("idmembre"),
+                        result.getString("nom"),
+                        result.getString("postnom"),
+                        result.getString("prenom"),
+                        result.getString("sexe")
+                        )
+                );
+            }
+        }catch(ClassNotFoundException | SQLException | IOException | ParseException ex){
+             message=ex.getMessage();
+        }
+        return lst;
+    }
+    
     //RETOUR
     //======
     public String retour(){

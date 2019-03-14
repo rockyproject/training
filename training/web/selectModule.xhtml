@@ -10,6 +10,7 @@
     <h:body>
         <h:form>
             
+            
             <p:dataTable var="modules" value="#{module.liste()}">
                 <p:column headerText="ID">
                     <h:outputText value="#{modules.idModule}" />
@@ -20,9 +21,13 @@
                 <p:column headerText="Nombre Pages">
                     <h:outputText value="#{modules.nbrePage}" />
                 </p:column>
-                 <p:column headerText="Action">
-                     <h:commandButton action="#{inscription.selectMembre()}" value="Selectionner">
+                 <p:column headerText="Action" >
+                     
+                     <h:commandButton action="#{inscription.selectMembre()}" value="Selectionner" rendered="#{inscription.action eq 'Inscription'}">
                          <f:setPropertyActionListener target="#{inscription.module}" value="#{modules}"/>
+                     </h:commandButton>
+                     <h:commandButton action="#{formation.selectFormateur()}" value="Selectionner" rendered="#{formation.action eq 'Formation'}">
+                         <f:setPropertyActionListener target="#{formation.module}" value="#{modules}"/>
                      </h:commandButton>
                      <h:commandButton action="#{module.saisie()}" value="Modifier">
                          <f:setPropertyActionListener target="#{miseAjour.module}" value="#{modules}"/>

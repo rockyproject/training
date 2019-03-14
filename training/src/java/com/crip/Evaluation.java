@@ -15,11 +15,25 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class Evaluation {
+    private String action;
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
+    
 
     /**
      * Creates a new instance of Evaluation
      */
     public Evaluation() {
+    }
+    
+    public String selectMembre(){
+        return "selectMembre";
     }
     
 }
