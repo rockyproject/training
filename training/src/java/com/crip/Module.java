@@ -250,6 +250,7 @@ public class Module {
     //RETOUR
     //======
     public String retour(){
+        this.action="";
         return "main";
     }
 }

@@ -43,12 +43,16 @@
                                     </p:menuitem>
                                     
                                     <p:menuitem value="Paiement" url="paiement.xhtml"/>
-                                     <p:menuitem>
+                                    <p:menuitem>
                                          <h:commandLink action="#{evaluation.selectMembre()}" value="Evaluation">
                                             <f:setPropertyActionListener target="#{evaluation.action}" value="Evaluation"/>
                                         </h:commandLink>
-                                    </p:menuitem>                                                                      
-                                    <p:menuitem value="Formateur" url="formateur.xhtml"/>
+                                    </p:menuitem> 
+                                    <p:menuitem>
+                                        <h:commandLink action="#{formateur.selectFormateur()}" value="Formateur">
+                                            <f:setPropertyActionListener target="#{formateur.action}" value="Formateurs"/>
+                                        </h:commandLink>
+                                    </p:menuitem>     
                                     <p:menuitem value="Enseigner" url="enseigner.xhtml"/>
                                     <p:menuitem value="Universite" url="universite.xhtml"/>                                  
                                     <p:menuitem value="Module au Formateur" url="SelectFormateur.xhtml"/>

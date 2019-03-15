@@ -14,6 +14,10 @@
             <span style="color: red">#{formation.message}</span><br/>
             <table>
                 <tr>
+                    <td><h:outputText value="Id Formation"/></td>
+                    <td><h:inputText value="#{formation.idformation}"/></td>
+                </tr>
+                <tr>
                     <td><h:outputText value="Formateur"/></td>
                     <td><h:outputText value="#{formation.membre.nom} #{formation.membre.postNom} #{formation.membre.prenom}"/></td>
                 </tr>
@@ -23,7 +27,7 @@
                 </tr>
                 <tr>
                     <td><h:outputText value="Université"/></td>
-                    <td><h:outputText value="#{formation.universite.nomUniv}"/></td>
+                    <td><h:outputText value="#{formation.universite.sigle}"/></td>
                 </tr>
                 <tr>
                     <td><h:outputText value="Date début"/></td>

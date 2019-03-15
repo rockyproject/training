@@ -23,6 +23,7 @@ public class Formation {
     private Formateur formateur;
     private Universite universite;
     private Membre membre;
+    private String idformation;
     private String idMembre;
     private String idFormateur;
     private String idModule;
@@ -36,6 +37,8 @@ public class Formation {
     private String nomUniv;
     private String message;
     private String action;
+    private String hdebut;
+    private String hfin;
 
     public Module getModule() {
         return module;
@@ -173,6 +176,30 @@ public class Formation {
         this.action = action;
     }
 
+    public String getIdformation() {
+        return idformation;
+    }
+
+    public void setIdformation(String idformation) {
+        this.idformation = idformation;
+    }
+
+    public String getHdebut() {
+        return hdebut;
+    }
+
+    public void setHdebut(String hdebut) {
+        this.hdebut = hdebut;
+    }
+
+    public String getHfin() {
+        return hfin;
+    }
+
+    public void setHfin(String hfin) {
+        this.hfin = hfin;
+    }
+
     
 
     
@@ -215,22 +242,28 @@ public class Formation {
     //==============
     public String enregistrer(){
         this.heure = this.heureDebut + ":" + this.minuteDebut + " - " + this.heureFin + ":" + this.minuteFin;
+        this.hdebut=this.heureDebut + ":" + this.minuteDebut;
+        this.hfin=this.heureFin + ":" + this.minuteFin;
         try {
             DBConnection cnx=new DBConnection();
             cnx.Execute_Query("Insert into Formation ("                   
+                    + "idFormation,"
                     + "idFormateur,"
                     + "idmodule,"
-                    + "Heure,"
+                    + "Heuredebut,"
+                    + "Heurefin,"
                     + "DateDebut,"
                     + "DateFin,"
-                    + "Universite ) "
+                    + "iduniv ) "
                     + "VALUES ("
+                    + "'"+ this.idformation +"',"
                     + "'"+ this.membre.getIdMembre() +"',"
                     + "'"+ this.module.getIdModule() +"',"
-                    + "'"+ this.heure +"',"
+                    + "'"+ this.hdebut +"',"
+                    + "'"+ this.hfin +"',"        
                     + "'"+ new SimpleDateFormat("yyyy-MM-dd").format(this.dateDebut) +"',"
                     + "'"+ new SimpleDateFormat("yyyy-MM-dd").format(this.dateFin) +"',"
-                    + "'"+ this.universite.getNomUniv() +"'"
+                    + "'"+ this.universite.getIduniv()+"'"
                     + ")"
             );
                         //Initialisation
@@ -246,6 +279,7 @@ public class Formation {
             this.dateFin = new Date();
             this.nomUniv = "";
             this.message = "";
+            this.action="";
             //Retour à la page principale
             return "main";
         }

@@ -13,7 +13,13 @@
         <h:form>
             <p:dataTable var="universite" value="#{universite.liste()}">
                 <p:column headerText="Nom institution">
-                    <h:outputText value="#{universite.nomUniv}"/>
+                    <h:outputText value="#{universite.nom}"/>
+                </p:column>
+                <p:column headerText="Sigle">
+                    <h:outputText value="#{universite.sigle}"/>
+                </p:column>
+                <p:column headerText="Adresse">
+                    <h:outputText value="#{universite.adresse}"/>
                 </p:column>
                 <p:column headerText="Action">
                     <h:commandButton action="#{formation.Saisie()}" value="Selectionner">
@@ -27,8 +33,12 @@
                 </p:column>
                 <p:column headerText="Suppression" rendered="#{membre.action eq 'maj'}">
                     <h:outputText value="Supprimer"/>
-                </p:column>
+                </p:column>              
             </p:dataTable>
+            <br/>
+            <h:commandButton action="#{universite.saisie()}" value="Nouveau">
+                    <f:setPropertyActionListener target="#{module.action}" value="saisie"/>
+                </h:commandButton>
         </h:form>
     </h:body>
 </html>

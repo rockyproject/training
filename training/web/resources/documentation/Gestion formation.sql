@@ -157,3 +157,7 @@ Create table Formation
 	constraint fk_formation_module foreign key(idModule) references Module(idModule)on delete cascade on update cascade,
 	constraint fk_form_univ foreign key(idUniv)references Universite(idUniv)on delete cascade on update cascade
 );
+
+alter table Formation 
+alter column heuredebut type time, 
+alter column heurefin type time;

@@ -29,6 +29,9 @@
                      <h:commandButton action="#{formation.selectFormateur()}" value="Selectionner" rendered="#{formation.action eq 'Formation'}">
                          <f:setPropertyActionListener target="#{formation.module}" value="#{modules}"/>
                      </h:commandButton>
+                     <h:commandButton action="#{formateur.saisie()}" value="Selectionner" rendered="#{formateur.action eq 'Formateurs'}">
+                         <f:setPropertyActionListener target="#{formateur.module}" value="#{modules}"/>
+                     </h:commandButton>
                      <h:commandButton action="#{module.saisie()}" value="Modifier">
                          <f:setPropertyActionListener target="#{miseAjour.module}" value="#{modules}"/>
                          <f:setPropertyActionListener target="#{module.idModule}" value="#{modules.idModule}"/>

@@ -24,6 +24,8 @@ public class Formateur {
     private String idFormateur;
     private String action;
     private String message;
+    private Membre membre;
+    private Module module;
 
     public String getIdFormateur() {
         return idFormateur;
@@ -48,13 +50,51 @@ public class Formateur {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public Membre getMembre() {
+        return membre;
+    }
+
+    public void setMembre(Membre membre) {
+        this.membre = membre;
+    }
+
+    public Module getModule() {
+        return module;
+    }
+
+    public void setModule(Module module) {
+        this.module = module;
+    }
     
     /**
      * Creates a new instance of Formateur
      */
     public Formateur() {
     }
-     
+    
+    public String enregistrer(){
+                
+        try {
+            DBConnection conn = new DBConnection();
+            conn.Execute_Query("INSERT INTO ENseigner(idmodule, idformateur) VALUES ("
+                    + "'" + this.module.getIdModule() + "'," 
+                    + "'" + this.membre.getIdMembre() + "')" 
+                    
+            ); 
+            message = "Enregistrement effectué avec succès";
+            this.membre = new Membre();
+            this.module=new Module();
+            this.message="";
+            this.action="";
+            return "main";
+            
+        } catch (ClassNotFoundException | SQLException | IOException | ParseException ex) {
+            message= ex.getMessage();
+            return "saisieFormateur";
+        }
+        
+    }
     
     public List<Membre> liste(){
         List<Membre> lst = new ArrayList<>();
@@ -85,6 +125,18 @@ public class Formateur {
              message=ex.getMessage();
         }
         return lst;
+    }
+    
+    public String selectModule(){
+        return"selectModule";
+    }
+    
+    public String selectFormateur(){
+        return"selectFormateur";
+    }
+    
+    public String saisie(){
+        return"saisieAttribution";
     }
     
 }
