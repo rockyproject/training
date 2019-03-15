@@ -119,3 +119,41 @@ Select  concat(nom,' ',postnom) as noms from membre
 ALTER TABLE paiement RENAME TO inscription;
 
 alter table membre alter column sexe type varchar(15);
+alter table inscription add disponibilite varchar(15),add etat varchar(15);
+DROP TABLE formation;
+DROP TABLE universite;
+
+CREATE TABLE universite
+(
+	idUniv varchar(20),
+	nom varchar(250) not null,
+	sigle varchar(15) not null,
+	adresse varchar(150),
+	tel varchar(50),
+	email varchar(50),
+	siteWeb varchar(50),
+	dg varchar(10),
+	academique varchar(10),
+	ab varchar(10),
+	CONSTRAINT pk_univ PRIMARY KEY(idUniv),
+	CONSTRAINT fk_dg FOREIGN KEY (dg) REFERENCES membre(idmembre),
+	CONSTRAINT fk_academique FOREIGN KEY (academique) REFERENCES membre(idmembre),
+	CONSTRAINT fk_ab FOREIGN KEY (ab) REFERENCES membre(idmembre)
+)
+
+Create table Formation
+(
+	idFormation varchar(10),
+        idFormateur varchar(10),
+	idModule varchar(10),
+	heureDebut timestamp,
+        heureFin timestamp,
+	dateDebut date,
+	dateFin date,
+	idUniv varchar(20),
+        constraint pk_Format primary key (idFormation),
+	constraint uk_Format unique (idFormateur,idModule,heureDebut,dateDebut,dateFin),	
+	constraint fk_formateur_formation foreign key(idFormateur) references formateur(idFormateur)on delete cascade on update cascade,
+	constraint fk_formation_module foreign key(idModule) references Module(idModule)on delete cascade on update cascade,
+	constraint fk_form_univ foreign key(idUniv)references Universite(idUniv)on delete cascade on update cascade
+);

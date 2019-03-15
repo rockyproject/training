@@ -26,7 +26,11 @@ public class Formation {
     private String idMembre;
     private String idFormateur;
     private String idModule;
-    private Date heure=new Date();
+    private int heureDebut;
+    private int heureFin;
+    private int minuteDebut;
+    private int minuteFin;
+    private String heure;
     private Date dateDebut=new Date();
     private Date dateFin=new Date();
     private String nomUniv;
@@ -57,8 +61,6 @@ public class Formation {
         this.membre = membre;
     }
     
-    
-
     public Universite getUniversite() {
         return universite;
     }
@@ -91,14 +93,46 @@ public class Formation {
         this.idModule = idModule;
     }
 
-    public Date getHeure() {
+    public int getHeureDebut() {
+        return heureDebut;
+    }
+
+    public void setHeureDebut(int heureDebut) {
+        this.heureDebut = heureDebut;
+    }
+
+    public int getHeureFin() {
+        return heureFin;
+    }
+
+    public void setHeureFin(int heureFin) {
+        this.heureFin = heureFin;
+    }
+
+    public int getMinuteDebut() {
+        return minuteDebut;
+    }
+
+    public void setMinuteDebut(int minuteDebut) {
+        this.minuteDebut = minuteDebut;
+    }
+
+    public int getMinuteFin() {
+        return minuteFin;
+    }
+
+    public void setMinuteFin(int minuteFin) {
+        this.minuteFin = minuteFin;
+    }
+
+    public String getHeure() {
         return heure;
     }
 
-    public void setHeure(Date heure) {
+    public void setHeure(String heure) {
         this.heure = heure;
     }
-
+    
     public Date getDateDebut() {
         return dateDebut;
     }
@@ -180,6 +214,7 @@ public class Formation {
      //ENREGISTREMENT
     //==============
     public String enregistrer(){
+        this.heure = this.heureDebut + ":" + this.minuteDebut + " - " + this.heureFin + ":" + this.minuteFin;
         try {
             DBConnection cnx=new DBConnection();
             cnx.Execute_Query("Insert into Formation ("                   
@@ -192,7 +227,7 @@ public class Formation {
                     + "VALUES ("
                     + "'"+ this.membre.getIdMembre() +"',"
                     + "'"+ this.module.getIdModule() +"',"
-                    + "'"+ new SimpleDateFormat("yyyy-MM-dd").format(this.heure) +"',"
+                    + "'"+ this.heure +"',"
                     + "'"+ new SimpleDateFormat("yyyy-MM-dd").format(this.dateDebut) +"',"
                     + "'"+ new SimpleDateFormat("yyyy-MM-dd").format(this.dateFin) +"',"
                     + "'"+ this.universite.getNomUniv() +"'"
@@ -202,7 +237,11 @@ public class Formation {
             
             this.membre = new Membre();
             this.module = new Module();
-            this.heure = new Date();
+            this.heureDebut = 0;
+            this.heureFin = 0;
+            this.minuteDebut = 0;
+            this.minuteFin = 0;
+            this.heure = "";
             this.dateDebut = new Date();
             this.dateFin = new Date();
             this.nomUniv = "";
@@ -214,5 +253,25 @@ public class Formation {
             message=ex.getMessage();
             return "saisieFormation";
         }
+    }
+    
+    //HEURES
+    //======
+    public int[] heures(){
+        int h[] = new int[24];
+        for(int i=0;i<24;i++){
+            h[i]=i;
         }
+        return h;
+    }
+    
+    //MINUTES
+    //=======
+    public int[] minutes(){
+        int m[] = new int[60];
+        for(int i=0;i<60;i++){
+            m[i]=i;
+        }
+        return m;
+    }
 }

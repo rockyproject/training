@@ -34,8 +34,25 @@
                     <td><p:calendar value="#{formation.dateFin}" mode="popup"/></td>
                 </tr>
                 <tr>
-                    <td><h:outputText value="Date début"/></td>
-                    <td><p:calendar value="#{formation.heure}" mode="popup"/></td>
+                    <td><h:outputText value="Heure"/></td>
+                    <td>
+                        De 
+                        <h:selectOneMenu value="#{formation.heureDebut}">
+                            <f:selectItems value="#{formation.heures()}"/>
+                        </h:selectOneMenu>
+                        :
+                        <h:selectOneMenu value="#{formation.minuteDebut}">
+                            <f:selectItems value="#{formation.minutes()}"/>
+                        </h:selectOneMenu> 
+                        A 
+                        <h:selectOneMenu value="#{formation.heureFin}">
+                            <f:selectItems value="#{formation.heures()}"/>
+                        </h:selectOneMenu>
+                        :
+                        <h:selectOneMenu value="#{formation.minuteFin}">
+                            <f:selectItems value="#{formation.minutes()}"/>
+                        </h:selectOneMenu>                        
+                    </td>
                 </tr>        
                 <tr>
                     <td><h:commandButton value="Retour" action="#{inscription.retour()}"/></td>
