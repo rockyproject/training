@@ -20,7 +20,7 @@ import org.json.simple.parser.ParseException;
  */
 @ManagedBean
 @SessionScoped
-public class Formateur {
+public class Formateur extends Membre {
     private String idFormateur;
     private String action;
     private String message;
@@ -77,7 +77,7 @@ public class Formateur {
                 
         try {
             DBConnection conn = new DBConnection();
-            conn.Execute_Query("INSERT INTO ENseigner(idmodule, idformateur) VALUES ("
+            conn.Execute_Query("INSERT INTO Enseigner(idmodule, idformateur) VALUES ("
                     + "'" + this.module.getIdModule() + "'," 
                     + "'" + this.membre.getIdMembre() + "')" 
                     
@@ -85,6 +85,27 @@ public class Formateur {
             message = "Enregistrement effectué avec succès";
             this.membre = new Membre();
             this.module=new Module();
+            this.message="";
+            this.action="";
+            return "main";
+            
+        } catch (ClassNotFoundException | SQLException | IOException | ParseException ex) {
+            message= ex.getMessage();
+            return "saisieAttribution";
+        }
+        
+    }
+    
+    public String enregistrerFormateur(){
+                
+        try {
+            DBConnection conn = new DBConnection();
+            conn.Execute_Query("INSERT INTO Formateur(idformateur) VALUES ("               
+                    + "'" + this.membre.getIdMembre() + "')" 
+                    
+            ); 
+            message = "Enregistrement effectué avec succès";
+            this.membre = new Membre();
             this.message="";
             this.action="";
             return "main";
@@ -131,12 +152,20 @@ public class Formateur {
         return"selectModule";
     }
     
+    public String selectMembre(){
+        return"selectMembre";
+    }
+    
     public String selectFormateur(){
         return"selectFormateur";
     }
     
     public String saisie(){
         return"saisieAttribution";
+    }
+    
+    public String saisieFormateur(){
+        return"saisieFormateur";
     }
     
 }

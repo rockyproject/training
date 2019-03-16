@@ -32,6 +32,9 @@
                     <h:commandButton action="#{inscription.saisie()}" value="Selectionner" rendered="#{evaluation.action eq 'Evaluation'}">
                         <f:setPropertyActionListener target="" value=""/>                        
                     </h:commandButton>
+                    <h:commandButton action="#{formateur.saisieFormateur()}" value="Selectionner" rendered="#{formateur.action eq 'Formateurs'}">
+                        <f:setPropertyActionListener target="#{formateur.membre}" value="#{membre}"/>                        
+                    </h:commandButton>
                 </p:column>
                 <p:column headerText="Modification" rendered="#{membre.action eq 'maj'}">
                     <p:link value="Modifier" outcome="ModifMembre.xhtml">
