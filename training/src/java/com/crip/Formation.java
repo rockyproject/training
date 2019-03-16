@@ -19,14 +19,11 @@ import org.json.simple.parser.ParseException;
 @ManagedBean
 @SessionScoped
 public class Formation {
+    private String idFormation;
     private Module module;
     private Formateur formateur;
     private Universite universite;
     private Membre membre;
-    private String idformation;
-    private String idMembre;
-    private String idFormateur;
-    private String idModule;
     private int heureDebut;
     private int heureFin;
     private int minuteDebut;
@@ -34,11 +31,8 @@ public class Formation {
     private String heure;
     private Date dateDebut=new Date();
     private Date dateFin=new Date();
-    private String nomUniv;
     private String message;
     private String action;
-    private String hdebut;
-    private String hfin;
 
     public Module getModule() {
         return module;
@@ -71,31 +65,7 @@ public class Formation {
     public void setUniversite(Universite universite) {
         this.universite = universite;
     }
-
-    public String getIdMembre() {
-        return idMembre;
-    }
-
-    public void setIdMembre(String idMembre) {
-        this.idMembre = idMembre;
-    }
-
-    public String getIdFormateur() {
-        return idFormateur;
-    }
-
-    public void setIdFormateur(String idFormateur) {
-        this.idFormateur = idFormateur;
-    }
-
-    public String getIdModule() {
-        return idModule;
-    }
-
-    public void setIdModule(String idModule) {
-        this.idModule = idModule;
-    }
-
+ 
     public int getHeureDebut() {
         return heureDebut;
     }
@@ -152,14 +122,6 @@ public class Formation {
         this.dateFin = dateFin;
     }
 
-    public String getNomUniv() {
-        return nomUniv;
-    }
-
-    public void setNomUniv(String nomUniv) {
-        this.nomUniv = nomUniv;
-    }
-
     public String getMessage() {
         return message;
     }
@@ -175,34 +137,7 @@ public class Formation {
     public void setAction(String action) {
         this.action = action;
     }
-
-    public String getIdformation() {
-        return idformation;
-    }
-
-    public void setIdformation(String idformation) {
-        this.idformation = idformation;
-    }
-
-    public String getHdebut() {
-        return hdebut;
-    }
-
-    public void setHdebut(String hdebut) {
-        this.hdebut = hdebut;
-    }
-
-    public String getHfin() {
-        return hfin;
-    }
-
-    public void setHfin(String hfin) {
-        this.hfin = hfin;
-    }
-
-    
-
-    
+  
     /**
      * Creates a new instance of Formation
      */
@@ -240,30 +175,25 @@ public class Formation {
     
      //ENREGISTREMENT
     //==============
-    public String enregistrer(){
-        this.heure = this.heureDebut + ":" + this.minuteDebut + " - " + this.heureFin + ":" + this.minuteFin;
-        this.hdebut=this.heureDebut + ":" + this.minuteDebut;
-        this.hfin=this.heureFin + ":" + this.minuteFin;
+    public String enregistrer(){        
         try {
             DBConnection cnx=new DBConnection();
             cnx.Execute_Query("Insert into Formation ("                   
                     + "idFormation,"
                     + "idFormateur,"
                     + "idmodule,"
-                    + "Heuredebut,"
-                    + "Heurefin,"
+                    + "heureDebut,"
+                    + "heureFin,"
                     + "DateDebut,"
                     + "DateFin,"
-                    + "iduniv ) "
+                    + "idUniv ) "
                     + "VALUES ("
-                    + "'"+ this.idformation +"',"
                     + "'"+ this.membre.getIdMembre() +"',"
                     + "'"+ this.module.getIdModule() +"',"
-                    + "'"+ this.hdebut +"',"
-                    + "'"+ this.hfin +"',"        
+                    + "'"+ this.heure +"',"
                     + "'"+ new SimpleDateFormat("yyyy-MM-dd").format(this.dateDebut) +"',"
                     + "'"+ new SimpleDateFormat("yyyy-MM-dd").format(this.dateFin) +"',"
-                    + "'"+ this.universite.getIduniv()+"'"
+                    + "'"+ this.universite.getNomUniv() +"'"
                     + ")"
             );
                         //Initialisation
@@ -277,9 +207,8 @@ public class Formation {
             this.heure = "";
             this.dateDebut = new Date();
             this.dateFin = new Date();
-            this.nomUniv = "";
+            this.universite = new Universite();
             this.message = "";
-            this.action="";
             //Retour à la page principale
             return "main";
         }
