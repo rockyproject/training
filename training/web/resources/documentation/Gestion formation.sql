@@ -158,6 +158,6 @@ Create table Formation
 	constraint fk_form_univ foreign key(idUniv)references Universite(idUniv)on delete cascade on update cascade
 );
 
-alter table Formation 
-alter column heuredebut type time, 
-alter column heurefin type time;
+alter table Formation alter column heureDebut type time;
+alter table Formation alter column heureFin type time;
+
