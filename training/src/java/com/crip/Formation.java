@@ -193,7 +193,7 @@ public class Formation {
                     + "'"+ this.heure +"',"
                     + "'"+ new SimpleDateFormat("yyyy-MM-dd").format(this.dateDebut) +"',"
                     + "'"+ new SimpleDateFormat("yyyy-MM-dd").format(this.dateFin) +"',"
-                    + "'"+ this.universite.getNomUniv() +"'"
+                    + "'"+ this.universite.getIduniv() +"'"
                     + ")"
             );
                         //Initialisation
