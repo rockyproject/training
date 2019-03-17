@@ -34,6 +34,15 @@ public class Formation {
     private String message;
     private String action;
 
+    public String getIdFormation() {
+        return idFormation;
+    }
+
+    public void setIdFormation(String idFormation) {
+        this.idFormation = idFormation;
+    }
+ 
+
     public Module getModule() {
         return module;
     }
