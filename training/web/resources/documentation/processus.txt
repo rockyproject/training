@@ -1,0 +1,30 @@
+PROCESSUS DEJA PROGRAMMES
+=========================
+1. Enregistrement de la formation
+2. Enregistrement de l'universite
+
+PROCESSUS DEJA PROGRAMMES SANS DIAGRAMMES DE SEQUENCE
+=====================================================
+1. Enregistrement du module
+2. Modification du module
+3. Suppression du module
+4. Enregistrement du membre
+5. Enregistrement du formateur et attribution du module(A revoir)
+6. Inscription
+
+
+LISTE DES PROCESSUS A FAIRE
+===========================
+1. Login
+2. Evaluation
+3. Modification du membre
+4. Suppression du membre
+5. Modification de l'universite
+6. Suppression de l'universite
+7. Suppression de l'attribution de module au formateur
+8. Affectation des membres à une formation
+9. Modification de la formation
+10. Suppression de la formation
+11. Repartition de frais payé dans les comptes des membres
+
+
