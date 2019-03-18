@@ -54,13 +54,17 @@
                                         </h:commandLink>
                                     </p:menuitem>     
                                     <p:menuitem value="Enseigner" url="enseigner.xhtml"/>
-                                    <p:menuitem value="Universite" url="universite.xhtml"/>                                  
+                                    <p:menuitem>
+                                        <h:commandLink action="#{universite.selectDG()}" value="Universite">
+                                            <f:setPropertyActionListener target="#{universite.action}" value="UniversiteDG"/>
+                                        </h:commandLink>
+                                    </p:menuitem>  
+                                                                    
                                     <p:menuitem value="Module au Formateur" url="SelectFormateur.xhtml"/>
                                 </p:submenu>
                                 <p:submenu label="Mise à jour">
                                     <p:menuitem>
-                                        <h:commandLink action="#{module.selection()}" value="Module">
-                                            
+                                        <h:commandLink action="#{module.selection()}" value="Module">                                           
                                         </h:commandLink>
                                     </p:menuitem>
                                     <p:menuitem value="Membre" url="selectMembre.xhtml"/>

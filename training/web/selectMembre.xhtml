@@ -34,6 +34,17 @@
                     </h:commandButton>
                     <h:commandButton action="#{formateur.saisieFormateur()}" value="Selectionner" rendered="#{formateur.action eq 'Formateurs'}">
                         <f:setPropertyActionListener target="#{formateur.membre}" value="#{membre}"/>                        
+                    </h:commandButton>                 
+                    <h:commandButton action="#{universite.selectAcademique()}" value="Selectionner D.G" rendered="#{universite.action eq 'UniversiteDG'}">
+                        <f:setPropertyActionListener target="#{universite.dirGen}" value="#{membre}"/>
+                        <f:setPropertyActionListener target="#{universite.action}" value="UniversiteAC"/>
+                    </h:commandButton>
+                    <h:commandButton action="#{universite.selectAb()}" value="Selectionner Académique" rendered="#{universite.action eq 'UniversiteAC'}">
+                        <f:setPropertyActionListener target="#{universite.academ}" value="#{membre}"/> 
+                        <f:setPropertyActionListener target="#{universite.action}" value="UniversiteAB"/>
+                    </h:commandButton>
+                    <h:commandButton action="#{universite.saisie()}" value="Selectionner A.B" rendered="#{universite.action eq 'UniversiteAB'}">
+                        <f:setPropertyActionListener target="#{universite.adminBugd}" value="#{membre}"/>                         
                     </h:commandButton>
                 </p:column>
                 <p:column headerText="Modification" rendered="#{membre.action eq 'maj'}">

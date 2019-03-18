@@ -33,6 +33,9 @@ public class Universite {
     private String ab;
     private String action;
     private String message;
+    private Membre dirGen;
+    private Membre academ;
+    private Membre adminBugd;
 
     public String getIduniv() {
         return iduniv;
@@ -131,6 +134,30 @@ public class Universite {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public Membre getDirGen() {
+        return dirGen;
+    }
+
+    public void setDirGen(Membre dirGen) {
+        this.dirGen = dirGen;
+    }
+
+    public Membre getAcadem() {
+        return academ;
+    }
+
+    public void setAcadem(Membre academ) {
+        this.academ = academ;
+    }
+
+    public Membre getAdminBugd() {
+        return adminBugd;
+    }
+
+    public void setAdminBugd(Membre adminBugd) {
+        this.adminBugd = adminBugd;
+    }
     
     
 
@@ -174,14 +201,15 @@ public class Universite {
                     +"'"+ this.tel +"',"
                     +"'"+ this.email +"',"
                     +"'"+ this.siteweb +"',"
-                    +"'"+ this.dg +"',"
-                    +"'"+ this.academique +"',"
-                    +"'"+ this.ab +"')"
+                    +"'"+ this.dirGen.getIdMembre() +"',"
+                    +"'"+ this.academ.getIdMembre() +"',"
+                    +"'"+ this.adminBugd.getIdMembre() +"')"
                     
                 ); 
                 this.message = "";
                 this.action = "";
                 this.iduniv = "";
+                this.nom="";
                 this.sigle="";
                 this.adresse="";
                 this.tel="";
@@ -190,6 +218,9 @@ public class Universite {
                 this.dg="";
                 this.academique="";
                 this.ab="";
+                this.dirGen=new Membre();
+                this.academ=new Membre();
+                this.adminBugd=new Membre();
         } catch (ClassNotFoundException | SQLException | IOException | ParseException ex) {
             message= ex.getMessage();
         }
@@ -239,5 +270,17 @@ public class Universite {
      
      public String saisie(){
          return "saisieUniversite";
+     }
+     
+     public String selectDG(){
+         return "selectMembre";
+     }
+     
+     public String selectAcademique(){
+         return "selectMembre";
+     }
+     
+     public String selectAb(){
+         return "selectMembre";
      }
 }
