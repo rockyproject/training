@@ -46,6 +46,9 @@
                     <h:commandButton action="#{universite.saisie()}" value="Selectionner A.B" rendered="#{universite.action eq 'UniversiteAB'}">
                         <f:setPropertyActionListener target="#{universite.adminBugd}" value="#{membre}"/>                         
                     </h:commandButton>
+                    <h:commandButton action="#{formation.selectFormation()}" value="Selectionner" rendered="#{formation.action eq 'AffectationFormation'}">
+                        <f:setPropertyActionListener target="#{formation.membre}" value="#{membre}"/>                         
+                    </h:commandButton>
                 </p:column>
                 <p:column headerText="Modification" rendered="#{membre.action eq 'maj'}">
                     <p:link value="Modifier" outcome="ModifMembre.xhtml">

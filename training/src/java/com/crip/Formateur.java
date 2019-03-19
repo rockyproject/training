@@ -20,45 +20,9 @@ import org.json.simple.parser.ParseException;
  */
 @ManagedBean
 @SessionScoped
-public class Formateur extends Membre {
-    private String idFormateur;
-    private String action;
-    private String message;
-    private Membre membre;
+public class Formateur  extends Membre{
     private Module module;
-
-    public String getIdFormateur() {
-        return idFormateur;
-    }
-
-    public void setIdFormateur(String idFormateur) {
-        this.idFormateur = idFormateur;
-    }
-
-    public String getAction() {
-        return action;
-    }
-
-    public void setAction(String action) {
-        this.action = action;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Membre getMembre() {
-        return membre;
-    }
-
-    public void setMembre(Membre membre) {
-        this.membre = membre;
-    }
-
+    
     public Module getModule() {
         return module;
     }
@@ -66,6 +30,8 @@ public class Formateur extends Membre {
     public void setModule(Module module) {
         this.module = module;
     }
+
+   
     
     /**
      * Creates a new instance of Formateur
@@ -73,24 +39,30 @@ public class Formateur extends Membre {
     public Formateur() {
     }
     
+    @Override
     public String enregistrer(){
                 
         try {
             DBConnection conn = new DBConnection();
             conn.Execute_Query("INSERT INTO Enseigner(idmodule, idformateur) VALUES ("
                     + "'" + this.module.getIdModule() + "'," 
-                    + "'" + this.membre.getIdMembre() + "')" 
+                    + "'" + super.idMembre + "')" 
                     
             ); 
+            
             message = "Enregistrement effectué avec succès";
-            this.membre = new Membre();
+            super.idMembre="";
+            super.nom= "";
+            super.postNom="";
+            super.prenom = "";
+            super.sexe = "";
             this.module=new Module();
-            this.message="";
-            this.action="";
+            /*this.message="";*/
+            super.action="";
             return "main";
             
         } catch (ClassNotFoundException | SQLException | IOException | ParseException ex) {
-            message= ex.getMessage();
+            message= ex.getMessage();          
             return "saisieAttribution";
         }
         
@@ -101,13 +73,12 @@ public class Formateur extends Membre {
         try {
             DBConnection conn = new DBConnection();
             conn.Execute_Query("INSERT INTO Formateur(idformateur) VALUES ("               
-                    + "'" + this.membre.getIdMembre() + "')" 
+                    + "'" + super.idMembre + "')" 
                     
             ); 
-            message = "Enregistrement effectué avec succès";
-            this.membre = new Membre();
-            this.message="";
-            this.action="";
+            message = "Enregistrement effectué avec succès";            
+            super.message="";
+            super.action="";
             return "main";
             
         } catch (ClassNotFoundException | SQLException | IOException | ParseException ex) {
@@ -117,6 +88,7 @@ public class Formateur extends Membre {
         
     }
     
+    @Override
     public List<Membre> liste(){
         List<Membre> lst = new ArrayList<>();
         try{
@@ -148,9 +120,7 @@ public class Formateur extends Membre {
         return lst;
     }
     
-    public String selectModule(){
-        return"selectModule";
-    }
+    
     
     public String selectMembre(){
         return"selectMembre";
@@ -160,6 +130,7 @@ public class Formateur extends Membre {
         return"selectFormateur";
     }
     
+    @Override
     public String saisie(){
         return"saisieAttribution";
     }
