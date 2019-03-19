@@ -116,6 +116,7 @@ design,datedebut,datefin from Membre inner join Formation on Membre.IdMembre=For
 Select  concat(nom,' ',postnom) as noms from membre
 */
 
+/*
 ALTER TABLE paiement RENAME TO inscription;
 
 alter table membre alter column sexe type varchar(15);
@@ -160,3 +161,13 @@ Create table Formation
 
 alter table Formation alter column heureDebut type time;
 alter table Formation alter column heureFin type time;
+*/
+
+CREATE TABLE affectationmbremodule
+(
+  idmembre varchar(10) NOT NULL,
+  idformation varchar(10) NOT NULL,
+  CONSTRAINT pk_affect_mbre_mdle PRIMARY KEY (idmembre, idformation),
+  CONSTRAINT fk_affectation_formation FOREIGN KEY (idformation) REFERENCES formation (idformation) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT fk_affection_mbre FOREIGN KEY (idmembre) REFERENCES membre (idmembre) ON UPDATE CASCADE ON DELETE CASCADE
+)
