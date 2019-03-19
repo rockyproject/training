@@ -1,6 +1,6 @@
 {
-    "url": "jdbc:postgresql://localhost:5433/GestionFormation",
+    "url": "jdbc:postgresql://localhost:5432/GestionFormation",
     "user":"postgres",
-    "password":"JKab1993",
+    "password":"admin",
     "driver":"org.postgresql.Driver"
 }

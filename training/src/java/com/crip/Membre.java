@@ -17,13 +17,13 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 
 public class Membre {
-    private String idMembre;
-    private String nom;
-    private String postNom;
-    private String prenom;
-    private String sexe;
-    private String message;
-    private String action;
+    protected String idMembre;
+    protected String nom;
+    protected String postNom;
+    protected String prenom;
+    protected String sexe;
+    protected String message;
+    protected String action;
 
     public Membre() {
     }
@@ -226,5 +226,9 @@ public class Membre {
     //======
     public String retour(){
         return "main";
+    }
+    
+    public String selectModule(){
+        return "selectModule";
     }
 }

@@ -6,11 +6,14 @@
 package com.crip;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.util.Date;
+import java.util.List;
 import org.json.simple.parser.ParseException;
 /**
  *
@@ -33,6 +36,12 @@ public class Formation {
     private Date dateFin=new Date();
     private String message;
     private String action;
+    
+    private String idModule;
+    private String idFormateur;
+    private String nomUniv;
+    private String heuredeb;
+    private String heuref;
 
     public String getIdFormation() {
         return idFormation;
@@ -147,20 +156,89 @@ public class Formation {
         this.action = action;
     }
 
+    public String getIdModule() {
+        return idModule;
+    }
+
+    public void setIdModule(String idModule) {
+        this.idModule = idModule;
+    }
+
+    public String getIdFormateur() {
+        return idFormateur;
+    }
+
+    public void setIdFormateur(String idFormateur) {
+        this.idFormateur = idFormateur;
+    }
+
+    public String getNomUniv() {
+        return nomUniv;
+    }
+
+    public void setNomUniv(String nomUniv) {
+        this.nomUniv = nomUniv;
+    }
+
+    public String getHeuredeb() {
+        return heuredeb;
+    }
+
+    public void setHeuredeb(String heuredeb) {
+        this.heuredeb = heuredeb;
+    }
+
+    public String getHeuref() {
+        return heuref;
+    }
+
+    public void setHeuref(String heuref) {
+        this.heuref = heuref;
+    }
+    
     
 
+    
+
+    
+    
     
     /**
      * Creates a new instance of Formation
      */
     public Formation() {
     }
+    
+    public Formation(String idFormation,String idModule, String idFormateur, Date dateDebut, Date dateFin, String heuredeb, String heuref) {
+        this.idFormation=idFormation;
+        this.idModule=idModule;
+        this.idFormateur=idFormateur;
+        this.dateDebut=dateDebut;
+        this.dateFin=dateFin;
+        this.heuredeb=heuredeb;
+        this.heuref=heuref;
+    }
+    
     //AFFICHAGE DE LA PAGE DE SELECTION DU MODULE
     //===========================================
     public String selectModule()
     {
         return "selectModule";
        
+    }
+    
+    //AFFICHAGE DE LA PAGE DE SELECTION DU MODULE
+    //===========================================
+    public String selectMembre()
+    {
+        return "selectMembre";  
+    }
+    
+     //AFFICHAGE DE LA PAGE DE SELECTION DU MODULE
+    //===========================================
+    public String selectFormation()
+    {
+        return "selectFormation";  
     }
     
      //AFFICHAGE DE LA PAGE DE SELECTION FORMATEUR
@@ -200,9 +278,11 @@ public class Formation {
                     + "DateFin,"
                     + "idUniv ) "
                     + "VALUES ("
+                    + "'"+ this.idFormation +"',"
                     + "'"+ this.membre.getIdMembre() +"',"
                     + "'"+ this.module.getIdModule() +"',"
-                    + "'"+ this.heure +"',"
+                    + "'"+ this.heureDebut+ ":" + this.minuteDebut +"',"
+                    + "'"+ this.heureFin+ ":" + this.minuteFin +"',"
                     + "'"+ new SimpleDateFormat("yyyy-MM-dd").format(this.dateDebut) +"',"
                     + "'"+ new SimpleDateFormat("yyyy-MM-dd").format(this.dateFin) +"',"
                     + "'"+ this.universite.getIduniv() +"'"
@@ -248,5 +328,42 @@ public class Formation {
             m[i]=i;
         }
         return m;
+    }
+    
+    public List<Formation> listeFormation(){
+        List<Formation> lst = new ArrayList<>();
+        try{
+            DBConnection conn = new DBConnection();
+            ResultSet result = conn.Data_Source(
+                    "SELECT "
+                            + "idformation, " 
+                            + "(select Design from module where idmodule=formation.idmodule)as Design, "
+                            + "(select concat(nom,' ',postnom,' ',prenom) from Membre where idmembre=formation.idformateur)as nomFormateur, "
+                            + "heuredebut, "
+                            + "heurefin, "
+                            + "datedebut, "
+                            + "datefin "                  
+                            + "FROM Formation "
+                            
+                           
+            );
+            
+            while(result.next())
+            {
+                lst.add(new Formation(      
+                        result.getString("idformation"),
+                        result.getString("Design"),
+                        result.getString("nomFormateur"),
+                        result.getDate("datedebut"),
+                        result.getDate("datefin"),
+                        result.getString("heuredebut"),
+                        result.getString("heurefin")
+                        )
+                );
+            }
+        }catch(ClassNotFoundException | SQLException | IOException | ParseException ex){
+             message=ex.getMessage();
+        }
+        return lst;
     }
 }
