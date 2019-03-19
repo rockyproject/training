@@ -35,22 +35,6 @@ public class Formateur extends Membre {
         this.idFormateur = idFormateur;
     }
 
-    public String getAction() {
-        return action;
-    }
-
-    public void setAction(String action) {
-        this.action = action;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public Membre getMembre() {
         return membre;
     }
@@ -73,6 +57,7 @@ public class Formateur extends Membre {
     public Formateur() {
     }
     
+    @Override
     public String enregistrer(){
                 
         try {
@@ -117,6 +102,7 @@ public class Formateur extends Membre {
         
     }
     
+    @Override
     public List<Membre> liste(){
         List<Membre> lst = new ArrayList<>();
         try{
@@ -160,6 +146,7 @@ public class Formateur extends Membre {
         return"selectFormateur";
     }
     
+    @Override
     public String saisie(){
         return"saisieAttribution";
     }
