@@ -11,10 +11,11 @@ import java.util.logging.Logger;
 import org.json.simple.parser.ParseException;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+//import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 
 public class Membre {
     protected String idMembre;
@@ -227,8 +228,5 @@ public class Membre {
     public String retour(){
         return "main";
     }
-    
-    public String selectModule(){
-        return "selectModule";
-    }
+        
 }

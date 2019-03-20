@@ -31,8 +31,6 @@ public class Formateur  extends Membre{
         this.module = module;
     }
 
-   
-    
     /**
      * Creates a new instance of Formateur
      */
@@ -120,21 +118,25 @@ public class Formateur  extends Membre{
         return lst;
     }
     
+    public String selectModule(){
+        return "selectModule";
+    }
+    
     public String selectMembre(){
         return"selectMembre";
     }
     
     public String selectFormateur(){
-        return"selectFormateur";
+        return "selectFormateur";
     }
     
     @Override
     public String saisie(){
-        return"saisieAttribution";
+        return "saisieAttribution";
     }
     
     public String saisieFormateur(){
-        return"saisieFormateur";
+        return "saisieFormateur";
     }
     
 }

@@ -11,7 +11,9 @@
     </h:head>
     <h:body>
         <h:form>        
-            
+            <h:commandButton action="#{formateur.selectModule()}" value="Selectionner">
+                
+            </h:commandButton>
             <p:dataTable var="formateurs" value="#{membre.listeFormateur()}">
                 <p:column headerText="ID">
                     <h:outputText value="#{formateurs.idMembre}"/>
@@ -28,14 +30,14 @@
                 <p:column headerText="Action">
                     <h:commandButton action="#{formation.selectUniversite()}" value="Selectionner" rendered="#{formation.action eq 'Formation'}">
                         <f:setPropertyActionListener target="#{formation.membre}" value="#{formateurs}"/>                        
-                    </h:commandButton>
-                    <h:commandButton action="#{formateur.selectModule()}" value="Selectionner" rendered="#{membre.action eq 'Formateurs'}">
+                    </h:commandButton>                    
+                    <h:commandButton action="#{formateur.selectModule()}" value="Selectionner" rendered="#{formateur.action eq 'Formateurs'}">
                         <f:setPropertyActionListener target="#{formateur.idMembre}" value="#{formateurs.idMembre}"/> 
                         <f:setPropertyActionListener target="#{formateur.nom}" value="#{formateurs.nom}"/>
                         <f:setPropertyActionListener target="#{formateur.postNom}" value="#{formateurs.postNom}"/>
                         <f:setPropertyActionListener target="#{formateur.prenom}" value="#{formateurs.prenom}"/>
                         <f:setPropertyActionListener target="#{formateur.sexe}" value="#{formateurs.sexe}"/>
-                    </h:commandButton>
+                    </h:commandButton>                    
                 </p:column>
                 <p:column headerText="Modification" rendered="#{membre.action eq 'maj'}">
                     <p:link value="Modifier" outcome="ModifMembre.xhtml">
