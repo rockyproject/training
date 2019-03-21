@@ -9,8 +9,9 @@ PROCESSUS DEJA PROGRAMMES SANS DIAGRAMMES DE SEQUENCE
 2. Modification du module
 3. Suppression du module
 4. Enregistrement du membre
-5. Enregistrement du formateur et attribution du module(A revoir)
+5. Enregistrement du formateur et attribution du module         
 6. Inscription
+7. Affectation du membre à la formation 
 
 
 LISTE DES PROCESSUS A FAIRE
@@ -22,7 +23,6 @@ LISTE DES PROCESSUS A FAIRE
 5. Modification de l'universite
 6. Suppression de l'universite
 7. Suppression de l'attribution de module au formateur
-8. Affectation des membres à une formation
 9. Modification de la formation
 10. Suppression de la formation
 11. Repartition de frais payé dans les comptes des membres

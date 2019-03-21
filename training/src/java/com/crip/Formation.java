@@ -310,6 +310,32 @@ public class Formation {
         }
     }
     
+    public String enregistrerAffectation_Formation(){        
+        try {
+            DBConnection cnx=new DBConnection();
+            cnx.Execute_Query("Insert into affectationmbremodule ("                   
+                    + "idmembre,"
+                    + "idFormation) "
+                    + "VALUES ("
+                    + "'"+ this.membre.getIdMembre() +"',"
+                    + "'"+ this.idFormation +"'"                   
+                    + ")"
+            );
+                        //Initialisation
+            
+            this.membre = new Membre();
+            this.idFormation="";
+            
+            this.message = "";
+            //Retour à la page principale
+            return "main";
+        }
+        catch(ClassNotFoundException | SQLException | IOException | ParseException ex){
+            message=ex.getMessage();
+            return "selectFormation";
+        }
+    }
+    
     //HEURES
     //======
     public int[] heures(){
