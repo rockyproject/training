@@ -23,6 +23,7 @@
                 <tr>
                     <td> id </td>
                     <td><h:inputText value="#{membre.idMembre}"/></td>
+                    <td><h:outputText value="#{membre.motPass}"/></td>
                 </tr>
                 <tr>
                     <td> nom </td>
@@ -46,6 +47,7 @@
                         </h:selectOneMenu>
                     </td>
                 </tr>
+                
                 <tr>
                     <td><h:commandButton action="#{membre.retour()}" value="Retour"/></td>
                     <td><h:commandButton action="#{membre.enregistrer()}" value="Enregistrer"/></td>

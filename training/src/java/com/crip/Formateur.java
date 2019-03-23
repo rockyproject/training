@@ -77,6 +77,7 @@ public class Formateur  extends Membre{
             message = "Enregistrement effectué avec succès";            
             super.message="";
             super.action="";
+            
             return "main";
             
         } catch (ClassNotFoundException | SQLException | IOException | ParseException ex) {

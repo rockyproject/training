@@ -221,6 +221,7 @@ public class Universite {
                 this.dirGen=new Membre();
                 this.academ=new Membre();
                 this.adminBugd=new Membre();
+                return "main";
         } catch (ClassNotFoundException | SQLException | IOException | ParseException ex) {
             message= ex.getMessage();
         }

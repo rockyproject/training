@@ -25,6 +25,9 @@ public class Membre {
     protected String sexe;
     protected String message;
     protected String action;
+    
+    private String motPass;
+    private String confirmPassWord;
 
     public Membre() {
     }
@@ -92,6 +95,24 @@ public class Membre {
     public void setAction(String action) {
         this.action = action;
     }
+
+    public String getMotPass() {
+        return motPass;
+    }
+
+    public void setMotPass(String motPass) {
+        this.motPass = motPass;
+    }
+
+    public String getConfirmPassWord() {
+        return confirmPassWord;
+    }
+
+    public void setConfirmPassWord(String confirmPassWord) {
+        this.confirmPassWord = confirmPassWord;
+    }
+    
+    
     
     public String saisie()
     {
@@ -227,6 +248,14 @@ public class Membre {
     //======
     public String retour(){
         return "main";
+    }
+    
+    public String connecter(){
+        return "main";
+    }
+    
+    public String annuler(){
+        return "index";
     }
         
 }

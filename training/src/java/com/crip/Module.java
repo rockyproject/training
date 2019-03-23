@@ -27,6 +27,8 @@ public class Module {
     private int nbrePage;    
     private String message;
     private String action;
+    
+    private ActionMessage actionMess;
             
     //CONSTRUCTEUR
     //============
@@ -89,6 +91,15 @@ public class Module {
     public void setMaj(MiseAjour maj) {
         this.maj = maj;
     }
+
+    public ActionMessage getActionMess() {
+        return actionMess;
+    }
+
+    public void setActionMess(ActionMessage actionMess) {
+        this.actionMess = actionMess;
+    }
+    
     
     //SAISIE
     //=====
@@ -111,6 +122,7 @@ public class Module {
             idModule = "";
             designation = "";
             nbrePage = 0;
+            
         } catch (ClassNotFoundException | SQLException | IOException | ParseException ex) {
             message= ex.getMessage();
         }

@@ -23,13 +23,13 @@
                 </p:column>
                  <p:column headerText="Action" >
                      
-                     <h:commandButton action="#{inscription.selectMembre()}" value="Selectionner" rendered="#{inscription.action eq 'Inscription'}">
+                     <h:commandButton action="#{inscription.selectMembre()}" value="Selectionner" rendered="#{actionMessage.action eq 'Inscription'}">
                          <f:setPropertyActionListener target="#{inscription.module}" value="#{modules}"/>
                      </h:commandButton>
-                     <h:commandButton action="#{formation.selectFormateur()}" value="Selectionner" rendered="#{formation.action eq 'Formation'}">
+                     <h:commandButton action="#{formation.selectFormateur()}" value="Selectionner" rendered="#{actionMessage.action eq 'Formation'}">
                          <f:setPropertyActionListener target="#{formation.module}" value="#{modules}"/>
                      </h:commandButton>
-                     <h:commandButton action="#{formateur.saisie()}" value="Selectionner" rendered="#{formateur.action eq 'Formateurs'}">
+                     <h:commandButton action="#{formateur.enregistrer()}" value="Selectionner" rendered="#{actionMessage.action eq 'Formateurs'}">
                          <f:setPropertyActionListener target="#{formateur.module}" value="#{modules}"/>
                      </h:commandButton>
                      <h:commandButton action="#{module.saisie()}" value="Modifier">

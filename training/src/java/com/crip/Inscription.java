@@ -27,9 +27,10 @@ public class Inscription {
     private int montant;
     private String monnaie;
     private double taux;    
-    private String action;
+    /*private String action;*/
     private String message;
     
+    private ActionMessage actionMess;
     //CONSTRUCTEUR
     //============
     public Inscription() {        
@@ -53,13 +54,14 @@ public class Inscription {
         this.membre = membre;
     }
 
-    public String getAction() {
-        return action;
+    public ActionMessage getActionMess() {
+        return actionMess;
     }
 
-    public void setAction(String action) {
-        this.action = action;
+    public void setActionMess(ActionMessage actionMess) {
+        this.actionMess = actionMess;
     }
+    
 
     public String getNumBV() {
         return numBV;
@@ -164,10 +166,12 @@ public class Inscription {
             this.membre = new Membre();
             this.module = new Module();
             this.dateBV = new Date();
+            this.actionMess=new ActionMessage();
             this.montant = 0;
             this.monnaie = "";
             this.taux = 0.0;
             this.message = "";
+            
             //Retour à la page principale
             return "main";
         } catch (ClassNotFoundException | SQLException | IOException | ParseException ex) {

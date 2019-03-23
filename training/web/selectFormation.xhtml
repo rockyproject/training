@@ -37,7 +37,7 @@
                 
                 <p:column headerText="Action">
                    
-                    <h:commandButton action="#{formation.enregistrerAffectation_Formation()}" value="Selectionner" rendered="#{formation.action eq 'AffectationFormation'}">
+                    <h:commandButton action="#{formation.enregistrerAffectation_Formation()}" value="Selectionner" rendered="#{actionMessage.action eq 'AffectationFormation'}">
                         <f:setPropertyActionListener target="#{formation.idFormation}" value="#{formations.idFormation}"/>                         
                     </h:commandButton>              
                 </p:column>

@@ -23,47 +23,46 @@
                                 <p:submenu label="Saisie">
                                     <p:menuitem>
                                         <h:commandLink action="#{inscription.selectModule()}" value="Inscription à la formation">
-                                            <f:setPropertyActionListener target="#{inscription.action}" value="Inscription"/>
+                                            <f:setPropertyActionListener target="#{actionMessage.action}" value="Inscription"/>
                                         </h:commandLink>
                                     </p:menuitem>
                                     <p:menuitem>
                                         <h:commandLink action="#{module.saisie()}" value="Module">
-                                            <f:setPropertyActionListener target="#{module.action}" value="saisie"/>
+                                            <f:setPropertyActionListener target="#{actionMessage.action}" value="saisie"/>
                                         </h:commandLink>
                                     </p:menuitem>
                                     <p:menuitem>
                                         <h:commandLink action="#{membre.saisie()}" value="Membre">
-                                            <f:setPropertyActionListener target="#{membre.action}" value="saisie"/>
+                                            <f:setPropertyActionListener target="#{actionMessage.action}" value="saisie"/>
                                         </h:commandLink>
                                     </p:menuitem>
                                     <p:menuitem>
                                         <h:commandLink action="#{formation.selectModule()}" value="Formation">
-                                            <f:setPropertyActionListener target="#{formation.action}" value="Formation"/>
+                                            <f:setPropertyActionListener target="#{actionMessage.action}" value="Formation"/>
                                         </h:commandLink>
                                     </p:menuitem>                                    
                                     <p:menuitem value="Paiement" url="paiement.xhtml"/>
                                     <p:menuitem>
                                          <h:commandLink action="#{evaluation.selectMembre()}" value="Evaluation">
-                                            <f:setPropertyActionListener target="#{evaluation.action}" value="Evaluation"/>
+                                            <f:setPropertyActionListener target="#{actionMessage.action}" value="Evaluation"/>
                                         </h:commandLink>
                                     </p:menuitem> 
                                     <p:menuitem>
                                         <h:commandLink action="#{formateur.selectFormateur()}" value="Formateur">
-                                            <f:setPropertyActionListener target="#{formateur.action}" value="Formateurs"/>
+                                            <f:setPropertyActionListener target="#{actionMessage.action}" value="Formateurs"/>
                                         </h:commandLink>
                                     </p:menuitem>                                         
                                     <p:menuitem>
                                         <h:commandLink action="#{universite.selectDG()}" value="Universite">
-                                            <f:setPropertyActionListener target="#{universite.action}" value="UniversiteDG"/>
+                                            <f:setPropertyActionListener target="#{actionMessage.action}" value="UniversiteDG"/>
                                         </h:commandLink>
                                     </p:menuitem>  
                                      <p:menuitem>
                                          <h:commandLink action="#{formation.selectMembre()}" value="Affectation à la formation">
-                                             <f:setPropertyActionListener target="#{formation.action}" value="AffectationFormation"/>
+                                             <f:setPropertyActionListener target="#{actionMessage.action}" value="AffectationFormation"/>
                                         </h:commandLink>
                                     </p:menuitem>  
-                                                                    
-                                    
+                                                                                              
                                 </p:submenu>
                                 <p:submenu label="Mise à jour">
                                     <p:menuitem>
