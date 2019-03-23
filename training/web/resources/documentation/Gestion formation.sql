@@ -170,4 +170,25 @@ CREATE TABLE affectationmbremodule
   CONSTRAINT pk_affect_mbre_mdle PRIMARY KEY (idmembre, idformation),
   CONSTRAINT fk_affectation_formation FOREIGN KEY (idformation) REFERENCES formation (idformation) ON UPDATE CASCADE ON DELETE CASCADE,
   CONSTRAINT fk_affection_mbre FOREIGN KEY (idmembre) REFERENCES membre (idmembre) ON UPDATE CASCADE ON DELETE CASCADE
-)
+);
+
+create table Utiilisateur
+(
+  Idutilisateur varchar (10),
+  Motdepasse varchar (10),
+  CONSTRAINT pk_utili_membr PRIMARY KEY (Idutilisateur),
+  CONSTRAINT fk_membre_utilisateur FOREIGN KEY (Idutilisateur) REFERENCES membre(idmembre)
+  );
+
+alter table universite
+ADD percepteur character varying(10);
+
+create table administrateur
+(
+Idadmin character varying(10),
+CONSTRAINT pk_admin_membr PRIMARY KEY (idadmin),
+CONSTRAINT fk_membre_admin FOREIGN KEY (idadmin) REFERENCES membre(idmembre) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+alter table inscription
+ADD percepteur character varying(10);
