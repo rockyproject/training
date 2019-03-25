@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+     xmlns:p="http://primefaces.org/ui"
+     xmlns:f="http://xmlns.jcp.org/jsf/core"
+     xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h1>Evaluation</h1>
+        <h:form>
+            <span style="color: red">#{evaluation.message}</span><br/>
+            <table>
+                <tr>
+                    <td> <h:outputText value="Membre :" /> </td>
+                    <td><h:outputText value="#{evaluation.membre.nom} #{evaluation.membre.postNom} #{evaluation.membre.prenom}"/> </td>
+                </tr>  
+                <tr>
+                    <td> <h:outputText value="Module :" /> </td>
+                    <td><h:outputText value="#{evaluation.module.designation}"/> </td>
+                </tr> 
+                <tr>
+                    <td> <h:outputText value="Evaluateur :" /> </td>
+                    <td><h:outputText value="#{utilisateur.idMembre}"/> </td>
+                </tr> 
+                <tr>
+                    <td><h:outputText value="Date d'evaluation"/></td>
+                    <td><p:calendar value="#{evaluation.dateEv}" mode="popup"/></td>
+                </tr>
+                <tr>
+                    <td><h:outputText value="Cote"/></td>
+                    <td><h:inputText value="#{evaluation.cote}"/></td>
+                </tr>
+                <tr>
+                    <td><h:commandButton value="Retour" action="#{inscription.retour()}"/></td>
+                    <td>
+                        <h:commandButton value="Enregistrer" action="#{evaluation.enregistrer()}"/>
+                        <ui:remove>
+                             <h:commandButton value="Enregistrer" action="#{evaluation.enregistrer()}">
+                                <f:setPropertyActionListener target="#{evaluation.user}" value="#{utilisateur.idMembre}"/>
+                            </h:commandButton>
+                        </ui:remove>
+                       
+                    
+                    </td>
+                </tr>
+            </table>
+        </h:form>
+    </h:body>
+</html>
+
