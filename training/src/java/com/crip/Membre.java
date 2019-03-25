@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.simple.parser.ParseException;
@@ -18,7 +19,7 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 
 public class Membre {
-    protected String idMembre;
+    protected String idMembre = generateIdMembre();
     protected String nom;
     protected String postNom;
     protected String prenom;
@@ -26,8 +27,8 @@ public class Membre {
     protected String message;
     protected String action;
     
-    private String motPass;
-    private String confirmPassWord;
+    protected String motPass = generatePSWD();
+    protected String confirmPassWord;
 
     public Membre() {
     }
@@ -123,15 +124,22 @@ public class Membre {
                 
         try {
             DBConnection conn = new DBConnection();
-            conn.Execute_Query("INSERT INTO membre(idmembre, nom, postnom, prenom, sexe) VALUES ("
+            conn.Execute_Query(
+                    "BEGIN; "
+                    + "INSERT INTO membre(idmembre, nom, postnom, prenom, sexe) VALUES ("
                     + "'" + idMembre + "'," 
                     + "'" + nom + "'," 
                     + "'" + postNom + "',"
                     + "'" + prenom + "',"
-                    + "'" + sexe + "')"
+                    + "'" + sexe + "'); "
+                    + "INSERT INTO utilisateur(idutilisateur,motdepasse) VALUES ("
+                    + "'" + this.idMembre + "',"
+                    + "'" + this.motPass + "'); "
+                    + "COMMIT;"
             ); 
             message = "Enregistrement effectué avec succès";
-            idMembre = "";
+            idMembre = this.generateIdMembre();
+            this.motPass = this.generatePSWD();
             nom = "";
             postNom = "";
             prenom = "";
@@ -249,13 +257,25 @@ public class Membre {
     public String retour(){
         return "main";
     }
-    
-    public String connecter(){
-        return "main";
-    }
-    
-    public String annuler(){
-        return "index";
-    }
         
+    //GENERATION DU idMembre
+    //======================
+    private String generateIdMembre(){
+        String id="";
+        try {            
+            DBConnection conn = new DBConnection();
+            id = conn.Show_Data("select id from (select ((random()*10000000)::int)::varchar(10) AS id) t where id not in (select idmembre from membre)", "id", 1);
+            
+        } catch (ClassNotFoundException | SQLException | IOException | ParseException ex) {
+            this.message = ex.getMessage();
+        }
+        return id;
+    }
+    
+    //GENERATION DU MOT DE PASSE
+    //==========================
+    private String generatePSWD(){
+        String uuid = UUID.randomUUID().toString();
+        return uuid.substring(0, 4) + "rck" + uuid.substring(4, 8);
+    }
 }

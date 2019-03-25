@@ -192,3 +192,7 @@ CONSTRAINT fk_membre_admin FOREIGN KEY (idadmin) REFERENCES membre(idmembre) ON 
 
 alter table inscription
 ADD percepteur character varying(10);
+
+ALTER TABLE Utiilisateur RENAME TO utilisateur;
+
+ALTER TABLE utilisateur ALTER COLUMN motdepasse type varchar (20)

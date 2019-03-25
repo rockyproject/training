@@ -9,21 +9,32 @@
     </h:head>
     <h:body>
         <h:form>
+            <span style="color: red">#{utilisateur.message}</span>
             <table>
                 <tr>
                     <td><h:outputText value="ID" /></td>
-                    <td><inputText value="#{membre.idMembre}" /></td>
+                    <td><h:inputText value="#{utilisateur.idMembre}" /></td>
                 </tr>
                 <tr>
                     <td><h:outputText value="Mot de pass" /></td>
-                    <td><inputText value="#{membre.motPass}" /></td>
+                    <td>
+                        <h:inputSecret id="pswd" value="#{utilisateur.motPass}">
+                            <f:validateLength minimum="8" maximum="20"/>
+                        </h:inputSecret>
+                        <h:message for="pswd" style="color:red"/>
+                    </td>
                 </tr>
                 <tr>
-                    <td><h:outputText value="Confirmer mot de pass" /></td>
-                    <td><inputText value="#{membre.motPass}" /></td>
+                    <td><h:outputText id="confpswd" value="Confirmer mot de pass" /></td>
+                    <td>
+                        <h:inputSecret value="#{utilisateur.confirmPassWord}">
+                            <f:validateLength minimum="8" maximum="20"/>
+                        </h:inputSecret>
+                        <h:message for="confpswd" style="color:red"/>
+                    </td>
                 </tr>
                  <tr>                  
-                    <td><h:commandButton value="Enregistrer" action=""/></td>
+                     <td><h:commandButton value="Enregistrer" action="#{utilisateur.changerPSWD()}"/></td>
                 </tr>
             </table>
         </h:form>

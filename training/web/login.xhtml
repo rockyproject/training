@@ -7,19 +7,19 @@
     </h:head>
     <h:body>
         <h:form>
-            <span style="color: red">#{membre.message}</span><br/>
+            <span style="color: red">#{utilisateur.message}</span><br/>
             <table>
                 <tr>
                     <td><h:outputLabel value="Login"/></td>
-                    <td><h:inputText value="#{membre.idMembre}"/></td>
+                    <td><h:inputText value="#{utilisateur.idMembre}"/></td>
                 </tr>
                 <tr>
                     <td><h:outputLabel value="Mot de passe"/></td>
-                    <td><h:inputText value="#{membre.motPass}"/></td>
+                    <td><h:inputSecret value="#{utilisateur.motPass}"/></td>
                 </tr>
                 <tr>
-                    <td><h:commandButton action="#{membre.annuler()}" value="Annuler"/></td>
-                    <td><h:commandButton action="#{membre.connecter()}" value="Connecter"/></td>
+                    <td><h:commandButton action="#{utilisateur.annuler()}" value="Annuler"/></td>
+                    <td><h:commandButton action="#{utilisateur.connecter()}" value="Connecter"/></td>
                 </tr>
             </table>
         </h:form>
