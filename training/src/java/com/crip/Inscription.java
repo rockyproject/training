@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 //import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import org.json.simple.parser.ParseException;
@@ -27,10 +28,16 @@ public class Inscription {
     private int montant;
     private String monnaie;
     private double taux;    
-    /*private String action;*/
-    private String message;
+    private String disponibilite;
+    private String etat;
     
+    /*private String action;*/
+    private String message;   
     private ActionMessage actionMess;
+    
+    @ManagedProperty(value="#{utilisateur}")
+    Utilisateur utilisateur;
+    
     //CONSTRUCTEUR
     //============
     public Inscription() {        
@@ -110,6 +117,32 @@ public class Inscription {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public String getDisponibilite() {
+        return disponibilite;
+    }
+
+    public void setDisponibilite(String disponibilite) {
+        this.disponibilite = disponibilite;
+    }
+
+    public String getEtat() {
+        return etat;
+    }
+
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+    
+    
     
     //AFFICHAGE DE LA PAGE DE SAISIE DE L'INSCRIPTION
     //===============================================
@@ -150,7 +183,10 @@ public class Inscription {
                     + "datep,"
                     + "montant,"
                     + "monnaie,"
-                    + "taux) "
+                    + "taux,"
+                    + "disponibilite,"
+                    + "etat,"
+                    + "percepteur ) "
                     + "VALUES ("
                     + "'"+ this.numBV +"',"
                     + "'"+ this.membre.getIdMembre() +"',"
@@ -158,7 +194,10 @@ public class Inscription {
                     + "'"+ new SimpleDateFormat("yyyy-MM-dd").format(this.dateBV) +"',"
                     + this.montant +","
                     + "'"+ this.monnaie +"',"
-                    + this.taux 
+                    + this.taux +","
+                    + "'"+ this.disponibilite +"',"
+                    + "'"+ this.etat +"',"
+                    + "'"+ this.utilisateur.idMembre +"'"
                     + ")"
             );
             //Initialisation
@@ -171,6 +210,8 @@ public class Inscription {
             this.monnaie = "";
             this.taux = 0.0;
             this.message = "";
+            this.disponibilite="";
+            this.etat="";
             
             //Retour à la page principale
             return "main";

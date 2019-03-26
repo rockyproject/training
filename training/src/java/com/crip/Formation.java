@@ -369,9 +369,7 @@ public class Formation {
                             + "heurefin, "
                             + "datedebut, "
                             + "datefin "                  
-                            + "FROM Formation "
-                            
-                           
+                            + "FROM Formation "                                                     
             );
             
             while(result.next())
@@ -391,5 +389,19 @@ public class Formation {
              message=ex.getMessage();
         }
         return lst;
+    }
+    
+    //GENERATION DU idMembre
+    //======================
+    private String generateIdFormation(){
+        String id="";
+        try {            
+            DBConnection conn = new DBConnection();
+            id = conn.Show_Data("select id from (select ((random()*10000000)::int)::varchar(10) AS id) t where id not in (select idmembre from membre)", "id", 1);
+            
+        } catch (ClassNotFoundException | SQLException | IOException | ParseException ex) {
+            this.message = ex.getMessage();
+        }
+        return id;
     }
 }

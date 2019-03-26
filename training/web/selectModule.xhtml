@@ -40,21 +40,21 @@
                          <f:setPropertyActionListener target="#{module.idModule}" value="#{modules.idModule}"/>
                          <f:setPropertyActionListener target="#{module.designation}" value="#{modules.designation}"/>
                          <f:setPropertyActionListener target="#{module.nbrePage}" value="#{modules.nbrePage}"/>
-                         <f:setPropertyActionListener target="#{module.action}" value="modification"/>
+                         <f:setPropertyActionListener target="#{actionMessage.action}" value="modification"/>
                      </h:commandButton>
                      <h:commandButton action="#{module.saisie()}" value="Supprimer">
                          <f:setPropertyActionListener target="#{miseAjour.module}" value="#{modules}"/>
                          <f:setPropertyActionListener target="#{module.idModule}" value="#{modules.idModule}"/>
                          <f:setPropertyActionListener target="#{module.designation}" value="#{modules.designation}"/>
                          <f:setPropertyActionListener target="#{module.nbrePage}" value="#{modules.nbrePage}"/>
-                         <f:setPropertyActionListener target="#{module.action}" value="suppression"/>
+                         <f:setPropertyActionListener target="#{actionMessage.action}" value="suppression"/>
                      </h:commandButton>
                 </p:column>
             </p:dataTable>
             <br/>
             <h:commandButton action="#{module.retour()}" value="Annuler"/>
             <h:commandButton action="#{module.saisie()}" value="Nouveau">
-                <f:setPropertyActionListener target="#{module.action}" value="saisie"/>
+                <f:setPropertyActionListener target="#{actionMessage.action}" value="saisie"/>
             </h:commandButton>
         </h:form>
     </h:body>

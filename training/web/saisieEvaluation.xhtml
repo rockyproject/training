@@ -21,10 +21,13 @@
                     <td> <h:outputText value="Module :" /> </td>
                     <td><h:outputText value="#{evaluation.module.designation}"/> </td>
                 </tr> 
-                <tr>
-                    <td> <h:outputText value="Evaluateur :" /> </td>
-                    <td><h:outputText value="#{utilisateur.idMembre}"/> </td>
-                </tr> 
+                <ui:remove>
+                    <tr>
+                        <td> <h:outputText value="Evaluateur :" /> </td>
+                        <td><h:outputText value="#{utilisateur.idMembre}"/> </td>
+                    </tr> 
+                </ui:remove>
+                
                 <tr>
                     <td><h:outputText value="Date d'evaluation"/></td>
                     <td><p:calendar value="#{evaluation.dateEv}" mode="popup"/></td>
