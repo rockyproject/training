@@ -195,4 +195,88 @@ ADD percepteur character varying(10);
 
 ALTER TABLE Utiilisateur RENAME TO utilisateur;
 
-ALTER TABLE utilisateur ALTER COLUMN motdepasse type varchar (20)
+ALTER TABLE utilisateur ALTER COLUMN motdepasse type varchar (20);
+
+CREATE TABLE cleRepartition
+(
+	role varchar(25),
+	pourcentage float,
+	CONSTRAINT pk_cle_repart PRIMARY KEY(role)
+);
+
+INSERT INTO cleRepartition VALUES
+('Percepteur',4),
+('Formateur',20),
+('Evaluateur 1',2),
+('Evaluateur 2',2),
+('DG',3),
+('Academique',2),
+('AB',2),
+('CP',2),
+('Section',2),
+('Universite',20),
+('Centre',20),
+('Validation des modules',5),
+('auteur',10),
+('Formateur echelon 1',2),
+('Formateur echelon 2',2),
+('Formateur echelon 3',2)
+
+CREATE TABLE journalisation
+(
+	dateop timestamp,
+	idop varchar(50),
+	opJourn varchar(50),
+	idMembre varchar(10),
+	roleMbre varchar(25),
+	montant float,
+	monnaie varchar(6),
+	mouvement varchar(15),
+	libelle varchar(250),
+	CONSTRAINT pk_jounalisation PRIMARY KEY(idop,opJourn,idMembre),
+	CONSTRAINT fk_journal_membre FOREIGN KEY(idMembre) REFERENCES membre(idMembre) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+/*Fonction de journalisation de l'inscription*/
+/*===========================================*/
+CREATE OR REPLACE FUNCTION journalisation_inscription()
+RETURNS trigger AS
+
+$BODY$
+	BEGIN
+		INSERT INTO journalisation
+		(
+		dateop,
+		idop,
+		opJourn,
+		idMembre,
+		roleMbre,
+		montant,
+		monnaie,
+		taux,
+		mouvement,
+		libelle
+		) 
+		SELECT now(),
+		concat(NEW.idmembre,NEW.idmodule),
+		'Inscription',
+		NEW.percepteur,
+		'Percepteur',
+		((select pourcentage FROM cleRepartition WHERE role='Percepteur') * NEW.montant/100),
+		NEW.monnaie,
+		NEW.taux,
+		'Entree',
+		concat('Inscription de ', (select concat( nom, ' ',postnom,' ',prenom)as NomMembre from membre where idmembre=NEW.idmembre),' au module: ',(select design from module WHERE idmodule=NEW.idmodule));
+		
+		RETURN NEW;
+	END;
+$BODY$
+LANGUAGE 'plpgsql';
+
+/*Declencheur de journalisation de l'inscription*/
+/*==============================================*/
+CREATE TRIGGER ajout_journalisation_inscription
+AFTER INSERT
+ON inscription
+FOR EACH ROW
+EXECUTE PROCEDURE journalisation_inscription();
