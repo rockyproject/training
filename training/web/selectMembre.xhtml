@@ -29,8 +29,8 @@
                     <h:commandButton action="#{inscription.saisie()}" value="Selectionner" rendered="#{actionMessage.action eq 'Inscription'}">
                         <f:setPropertyActionListener target="#{inscription.membre}" value="#{membre}"/>                        
                     </h:commandButton>
-                    <h:commandButton action="#{inscription.saisie()}" value="Selectionner" rendered="#{actionMessage.action eq 'Evaluation'}">
-                        <f:setPropertyActionListener target="" value=""/>                        
+                    <h:commandButton action="#{evaluation.selectModule()}" value="Selectionner" rendered="#{actionMessage.action eq 'Evaluation'}">
+                        <f:setPropertyActionListener target="#{evaluation.membre}" value="#{membre}"/>                        
                     </h:commandButton>
                     <h:commandButton action="#{formateur.enregistrerFormateur()}" value="Selectionner" rendered="#{actionMessage.action eq 'Formateurs'}">
                         <f:setPropertyActionListener target="#{formateur.idMembre}" value="#{membre.idMembre}"/> 

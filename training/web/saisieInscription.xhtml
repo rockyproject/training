@@ -48,6 +48,14 @@
                     <td><h:inputText value="#{inscription.taux}"/></td>
                 </tr>
                 <tr>
+                    <td><h:outputText value="Disponibilite"/></td>
+                    <td><h:inputText value="#{inscription.disponibilite}"/></td>
+                </tr>
+                <tr>
+                    <td><h:outputText value="Etat"/></td>
+                    <td><h:inputText value="#{inscription.etat}"/></td>
+                </tr>
+                <tr>
                     <td><h:commandButton value="Retour" action="#{inscription.retour()}"/></td>
                     <td><h:commandButton value="Enregistrer" action="#{inscription.enregistrer()}"/></td>
                 </tr>

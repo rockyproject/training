@@ -41,12 +41,12 @@
                         <f:setPropertyActionListener target="#{formation.idFormation}" value="#{formations.idFormation}"/>                         
                     </h:commandButton>              
                 </p:column>
-                <p:column headerText="Modification" rendered="#{membre.action eq 'maj'}">
+                <p:column headerText="Modification" rendered="#{actionMessage.action eq 'maj'}">
                     <p:link value="Modifier" outcome="ModifMembre.xhtml">
                         <f:param name="id" value="#{membre.idMembre}"/>
                     </p:link>
                 </p:column>
-                <p:column headerText="Suppression" rendered="#{membre.action eq 'maj'}">
+                <p:column headerText="Suppression" rendered="#{actionMessage.action eq 'maj'}">
                     <h:outputText value="Supprimer"/>
                 </p:column>
             </p:dataTable>

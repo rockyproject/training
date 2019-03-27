@@ -42,7 +42,11 @@
                                             <f:setPropertyActionListener target="#{actionMessage.action}" value="Formation"/>
                                         </h:commandLink>
                                     </p:menuitem>                                    
-                                    <p:menuitem value="Paiement" url="paiement.xhtml"/>
+                                    <p:menuitem>
+                                         <h:commandLink action="#{evaluation.selectMembre()}" value="Paiement">
+                                            <f:setPropertyActionListener target="#{actionMessage.action}" value="Paiement"/>
+                                        </h:commandLink>
+                                    </p:menuitem> 
                                     <p:menuitem>
                                          <h:commandLink action="#{evaluation.selectMembre()}" value="Evaluation">
                                             <f:setPropertyActionListener target="#{actionMessage.action}" value="Evaluation"/>
