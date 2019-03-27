@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import org.json.simple.parser.ParseException;
 
 import javax.faces.bean.ManagedBean;
@@ -22,11 +23,12 @@ public class Module {
     @ManagedProperty(value="#{miseAjour}")
     MiseAjour maj;
     
-    private String idModule;
+    private String idModule=generateIdModule();
     private String designation;
     private int nbrePage;    
     private String message;
     private String action;
+    private Membre auteur;
     
     private ActionMessage actionMess;
             
@@ -99,6 +101,15 @@ public class Module {
     public void setActionMess(ActionMessage actionMess) {
         this.actionMess = actionMess;
     }
+
+    public Membre getAuteur() {
+        return auteur;
+    }
+
+    public void setAuteur(Membre auteur) {
+        this.auteur = auteur;
+    }
+    
     
     
     //SAISIE
@@ -107,26 +118,31 @@ public class Module {
     {
         return "module";
     }
+    
+    public String selectMembre(){
+        return "selectMembre";
+    }
             
     //ENREGISTREMENT
     //==============
     public String enregistrer(){        
         try {
             DBConnection cnx=new DBConnection();
-            cnx.Execute_Query("Insert into module (idmodule,design,nbrePage) VALUES ("
+            cnx.Execute_Query("Insert into module (idmodule,design,auteur) VALUES ("
                 + "'"+ idModule +"',"
                 + "'"+ designation +"',"
-                +  nbrePage +")"
+                +  "'"+this.auteur.idMembre +"')"
                 ); 
             message = "";
-            idModule = "";
+            idModule = this.generateIdModule();
             designation = "";
+            this.auteur=new Membre();
             nbrePage = 0;
-            
+            return "main";
         } catch (ClassNotFoundException | SQLException | IOException | ParseException ex) {
             message= ex.getMessage();
-        }
-        return "module";
+            return "module";
+        }       
     }
     
     //MODIFICATION
@@ -264,5 +280,12 @@ public class Module {
     public String retour(){
         this.action="";
         return "main";
+    }
+    
+    //GENERATION DU MOT DE PASSE
+    //==========================
+    private String generateIdModule(){
+        String uuid = UUID.randomUUID().toString();
+        return uuid.substring(0, 4) + "rck" + uuid.substring(4, 6);
     }
 }

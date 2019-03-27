@@ -12,7 +12,7 @@
             <table>
                 <tr>
                     <td>ID</td>
-                    <td><h:inputText value="#{module.idModule}"/></td>
+                    <td><h:inputText value="#{module.idModule}" readonly="true"/></td>
                 </tr>
                 <tr>
                     <td>Designation</td>
@@ -20,13 +20,13 @@
                 </tr>
                 
                 <tr>
-                    <td>Nombre de Page</td>
-                    <td><h:inputText value="#{module.nbrePage}"/></td>
+                    <td>Auteur</td>
+                    <td><h:outputText value="#{module.auteur.nom} #{module.auteur.postNom} #{module.auteur.prenom}"/></td>
                 </tr>
                 <tr>
                     <td><h:commandButton action="#{module.retour()}" value="Retour"/></td>
                     <td>
-                        <h:commandButton action="#{module.enregistrer()}" value="Enregistrer" rendered="#{actionMessage.action eq 'saisie'}"/>
+                        <h:commandButton action="#{module.enregistrer()}" value="Enregistrer" rendered="#{actionMessage.action eq 'Module'}"/>
                         <h:commandButton action="#{module.modifier()}" value="Modifier" rendered="#{actionMessage.action eq 'modification'}"/>
                         <h:commandButton action="#{module.supprimer()}" value="Supprimer" rendered="#{actionMessage.action eq 'suppression'}"/>
                     </td>

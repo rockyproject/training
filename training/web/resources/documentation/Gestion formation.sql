@@ -280,3 +280,8 @@ AFTER INSERT
 ON inscription
 FOR EACH ROW
 EXECUTE PROCEDURE journalisation_inscription();
+
+Alter table Module drop column nbrepage 
+
+Alter table Module add column auteur varchar(10);
+Alter table Module add constraint fk_auteur foreign key(auteur)references Membre(Idmembre)on delete cascade on update cascade;
