@@ -285,7 +285,16 @@ public class Module {
     //GENERATION DU MOT DE PASSE
     //==========================
     private String generateIdModule(){
-        String uuid = UUID.randomUUID().toString();
-        return uuid.substring(0, 4) + "rck" + uuid.substring(4, 6);
+        /*String uuid = UUID.randomUUID().toString();
+        return uuid.substring(0, 4) + "rck" + uuid.substring(4, 6);*/
+        String id="";
+        try {            
+            DBConnection conn = new DBConnection();
+            id = conn.Show_Data("SELECT id from (SELECT substring(md5(random()::text),1,10) AS id) t WHERE id not in(SELECT idMembre FROM membre)", "id", 1);
+            
+        } catch (ClassNotFoundException | SQLException | IOException | ParseException ex) {
+            this.message = ex.getMessage();
+        }
+        return id;
     }
 }
