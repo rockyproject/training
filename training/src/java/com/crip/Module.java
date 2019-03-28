@@ -28,7 +28,9 @@ public class Module {
     private int nbrePage;    
     private String message;
     private String action;
+    private String auteurs;
     private Membre auteur;
+    
     
     private ActionMessage actionMess;
             
@@ -38,10 +40,10 @@ public class Module {
     
     }
          
-    public Module(String idModule,String designation, int nbrePage){
+    public Module(String idModule,String designation, String auteurs){
     this.idModule=idModule;
     this.designation=designation;
-    this.nbrePage=nbrePage;
+    this.auteurs=auteurs;
     }
 
     //ACCESSEURS
@@ -108,6 +110,14 @@ public class Module {
 
     public void setAuteur(Membre auteur) {
         this.auteur = auteur;
+    }
+
+    public String getAuteurs() {
+        return auteurs;
+    }
+
+    public void setAuteurs(String auteurs) {
+        this.auteurs = auteurs;
     }
     
     
@@ -200,7 +210,7 @@ public class Module {
                     "SELECT "
                             + "idmodule, "
                             + "design, "
-                            + "nbrepage "                            
+                            + "(select concat (nom,' ',postnom,' ',prenom) from membre where idmembre=module.auteur)as Auteur "                            
                             + "FROM module "
                             + "ORDER BY design"
             );
@@ -210,7 +220,7 @@ public class Module {
                 lst.add(new Module(
                         result.getString("idmodule"),
                         result.getString("design"),
-                        Integer.parseInt(result.getString("nbrepage")) 
+                        result.getString("Auteur") 
                         )
                 );
             }
@@ -256,7 +266,7 @@ public class Module {
                     "SELECT "
                             + "idModule, "
                             + "Design, "
-                            + "nbrePage "                         
+                            + "(select concat (nom,' ',postnom,' ',prenom) from membre where idmembre=module.auteur)as Auteur "                         
                             + "FROM Module"
             );
             
@@ -265,7 +275,7 @@ public class Module {
                 lst.add(new Module(
                         result.getString("idModule"),
                         result.getString("Design"),
-                        result.getInt("nbrePage")
+                        result.getString("Auteur")
                        
                         )
                 );
@@ -282,7 +292,7 @@ public class Module {
         return "main";
     }
     
-    //GENERATION DU MOT DE PASSE
+    //GENERATION DE L'ID MODULE
     //==========================
     private String generateIdModule(){
         /*String uuid = UUID.randomUUID().toString();
@@ -290,7 +300,7 @@ public class Module {
         String id="";
         try {            
             DBConnection conn = new DBConnection();
-            id = conn.Show_Data("SELECT id from (SELECT substring(md5(random()::text),1,10) AS id) t WHERE id not in(SELECT idMembre FROM membre)", "id", 1);
+            id = conn.Show_Data("SELECT id from (SELECT substring(md5(random()::text),1,10) AS id) t WHERE id not in(SELECT idModule FROM Module)", "id", 1);
             
         } catch (ClassNotFoundException | SQLException | IOException | ParseException ex) {
             this.message = ex.getMessage();

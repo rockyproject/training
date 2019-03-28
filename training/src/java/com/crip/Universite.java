@@ -21,7 +21,7 @@ import org.json.simple.parser.ParseException;
 @ManagedBean
 @SessionScoped
 public class Universite {
-    private String iduniv;
+    private String iduniv=generateIdUniversite();
     private String nom;
     private String sigle;
     private String adresse;
@@ -284,4 +284,18 @@ public class Universite {
      public String selectAb(){
          return "selectMembre";
      }
+     
+     //GENERATION DE  L'id de l'université
+    //=====================================
+    private String generateIdUniversite(){
+        String id="";
+        try {            
+            DBConnection conn = new DBConnection();
+            id = conn.Show_Data("select id from (select ((random()*10000000)::int)::varchar(10) AS id) t where id not in (select iduniv from Universite)", "id", 1);
+            
+        } catch (ClassNotFoundException | SQLException | IOException | ParseException ex) {
+            this.message = ex.getMessage();
+        }
+        return id;
+    }
 }
