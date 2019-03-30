@@ -21,7 +21,11 @@
                 <h:dataTable value="#{journalisation.affichageLegende()}" var="leg">
                     <h:column>
                         <f:facet name="header">Couleur</f:facet>
-                        <center>#{leg.couleur}</center>
+                        <center>
+                            <div style="width: 70px; height: 15px; background-color: #{leg.couleur}">
+                            
+                            </div>
+                        </center>
                     </h:column>
                     <h:column>
                         <f:facet name="header">Libelle</f:facet>

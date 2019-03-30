@@ -478,3 +478,27 @@ EXECUTE PROCEDURE journalisation_formation_log();
 select (sum(case when monnaie='FC' then montant/taux else montant end))::int as mont, roleMbre from journalisation where idmembre='1' group by roleMbre
 
 select (sum(case when monnaie='FC' then montant/taux else montant end))::int as mont from journalisation where idmembre='1'
+
+/*================================*/
+
+CREATE TABLE personne
+(
+	idpers varchar(10),
+	tel varchar(50),
+	email varchar(50),
+	adresse varchar(150),
+	CONSTRAINT pk_pers PRIMARY KEY(idpers)
+);
+
+INSERT INTO personne select idmembre,'-','-','Goma' from membre
+
+INSERT INTO personne SELECT iduniv,'-','-','Goma' from universite
+
+ALTER TABLE universite ALTER COLUMN iduniv TYPE varchar(10)
+
+ALTER TABLE utilisateur drop CONSTRAINT fk_membre_utilisateur
+
+ALTER TABLE utilisateur ADD CONSTRAINT fk_membre_utilisateur FOREIGN KEY (Idutilisateur) REFERENCES personne(idpers) ON DELETE CASCADE ON UPDATE CASCADE
+
+
+

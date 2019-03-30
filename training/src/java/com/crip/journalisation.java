@@ -151,7 +151,8 @@ public class journalisation {
                             + "roleMbre "
                             + "from journalisation "
                             + "where idmembre='1' "
-                            + "group by roleMbre"
+                            + "group by roleMbre "
+                            + "ORDER BY mont"
             );
             
             double somme=0;
@@ -209,7 +210,8 @@ public class journalisation {
                             + "roleMbre "
                             + "from journalisation "
                             + "where idmembre='1' "
-                            + "group by roleMbre"
+                            + "group by roleMbre "
+                            + "ORDER BY mont"
             );
             
             int i=0;            
@@ -217,7 +219,7 @@ public class journalisation {
             {
                 //Alimentation des donnees dans la legende
                 lst.add(new Legende(
-                        couleurs.get(i),
+                        "#" + couleurs.get(i),
                         result.getString("roleMbre"),
                         Double.parseDouble(result.getString("mont"))
                         )
