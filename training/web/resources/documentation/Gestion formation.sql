@@ -233,7 +233,7 @@ CREATE TABLE journalisation
 	monnaie varchar(6),
 	mouvement varchar(15),
 	libelle varchar(250),
-	CONSTRAINT pk_jounalisation PRIMARY KEY(idop,opJourn,idMembre),
+	CONSTRAINT pk_jounalisation PRIMARY KEY(idop,opJourn,idMembre,roleMbre),
 	CONSTRAINT fk_journal_membre FOREIGN KEY(idMembre) REFERENCES membre(idMembre) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
@@ -281,7 +281,200 @@ ON inscription
 FOR EACH ROW
 EXECUTE PROCEDURE journalisation_inscription();
 
+/*MODIFICATION DE LA TABLE Module*/
+/*===============================*/
 Alter table Module drop column nbrepage 
 
 Alter table Module add column auteur varchar(10);
 Alter table Module add constraint fk_auteur foreign key(auteur)references Membre(Idmembre)on delete cascade on update cascade;
+
+/*CLOTURE DE LA FORMATION*/
+/*=======================*/
+CREATE TABLE clotureFormation
+(
+    idFormation varchar(10),
+    dateConfirmation timestamp,
+    confirmePar varchar(10),
+    CONSTRAINT pk_cloture_form PRIMARY KEY(idFormation),
+    CONSTRAINT fk_cloture_formation FOREIGN KEY(idFormation) REFERENCES formation(idFormation) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_cloture_confirmation FOREIGN KEY(confirmePar) REFERENCES membre(idMembre)
+);
+
+/*Fonction de journalisation de la formation*/
+/*==========================================*/
+CREATE OR REPLACE FUNCTION journalisation_formation_log()
+RETURNS trigger AS
+
+$BODY$
+	BEGIN
+		INSERT INTO journalisation
+		(
+		dateop,
+		idop,
+		opJourn,
+		idMembre,
+		roleMbre,
+		montant,
+		monnaie,
+		taux,
+		mouvement,
+		libelle
+		) 
+		SELECT now(),
+		CONCAT(affectationmbremodule.idmembre,affectationmbremodule.idformation) as idop, 
+		'Formation',
+		module.auteur,
+		'Auteur',
+		((select pourcentage FROM cleRepartition WHERE role='auteur') * (select montant from inscription where inscription.idMembre= affectationmbremodule.idMembre and inscription.idModule=formation.idModule)/100),
+		(select monnaie from inscription where inscription.idMembre= affectationmbremodule.idMembre and inscription.idModule=formation.idModule),
+		(select taux from inscription where inscription.idMembre= affectationmbremodule.idMembre and inscription.idModule=formation.idModule),
+		'Entree',
+		concat('Formation de ', membre.nom, ' ',membre.postnom,' ',membre.prenom,' au module: ',module.design)
+		from affectationmbremodule
+		inner join formation on affectationmbremodule.idFormation=formation.idFormation
+		inner join module on formation.idModule=module.idModule
+		inner join universite on formation.idUniv=universite.idUniv
+		inner join membre on affectationmbremodule.idMembre=membre.idMembre
+		where formation.idFormation=NEW.idFormation;
+
+		INSERT INTO journalisation
+		(
+		dateop,
+		idop,
+		opJourn,
+		idMembre,
+		roleMbre,
+		montant,
+		monnaie,
+		taux,
+		mouvement,
+		libelle
+		) 
+		SELECT now(),
+		CONCAT(affectationmbremodule.idmembre,affectationmbremodule.idformation) as idop, 
+		'Formation',
+		formation.idFormateur,
+		'Formateur',
+		((select pourcentage FROM cleRepartition WHERE role='Formateur') * (select montant from inscription where inscription.idMembre= affectationmbremodule.idMembre and inscription.idModule=formation.idModule)/100),
+		(select monnaie from inscription where inscription.idMembre= affectationmbremodule.idMembre and inscription.idModule=formation.idModule),
+		(select taux from inscription where inscription.idMembre= affectationmbremodule.idMembre and inscription.idModule=formation.idModule),
+		'Entree',
+		concat('Formation de ', membre.nom, ' ',membre.postnom,' ',membre.prenom,' au module: ',module.design)
+		from affectationmbremodule
+		inner join formation on affectationmbremodule.idFormation=formation.idFormation
+		inner join module on formation.idModule=module.idModule
+		inner join universite on formation.idUniv=universite.idUniv
+		inner join membre on affectationmbremodule.idMembre=membre.idMembre
+		where formation.idFormation=NEW.idFormation;
+
+		INSERT INTO journalisation
+		(
+		dateop,
+		idop,
+		opJourn,
+		idMembre,
+		roleMbre,
+		montant,
+		monnaie,
+		taux,
+		mouvement,
+		libelle
+		) 
+		SELECT now(),
+		CONCAT(affectationmbremodule.idmembre,affectationmbremodule.idformation) as idop, 
+		'Formation',
+		universite.dg,
+		'DG',
+		((select pourcentage FROM cleRepartition WHERE role='DG') * (select montant from inscription where inscription.idMembre= affectationmbremodule.idMembre and inscription.idModule=formation.idModule)/100),
+		(select monnaie from inscription where inscription.idMembre= affectationmbremodule.idMembre and inscription.idModule=formation.idModule),
+		(select taux from inscription where inscription.idMembre= affectationmbremodule.idMembre and inscription.idModule=formation.idModule),
+		'Entree',
+		concat('Formation de ', membre.nom, ' ',membre.postnom,' ',membre.prenom,' au module: ',module.design)
+		from affectationmbremodule
+		inner join formation on affectationmbremodule.idFormation=formation.idFormation
+		inner join module on formation.idModule=module.idModule
+		inner join universite on formation.idUniv=universite.idUniv
+		inner join membre on affectationmbremodule.idMembre=membre.idMembre
+		where formation.idFormation=NEW.idFormation;
+		
+		INSERT INTO journalisation
+		(
+		dateop,
+		idop,
+		opJourn,
+		idMembre,
+		roleMbre,
+		montant,
+		monnaie,
+		taux,
+		mouvement,
+		libelle
+		) 
+		SELECT now(),
+		CONCAT(affectationmbremodule.idmembre,affectationmbremodule.idformation) as idop, 
+		'Formation',
+		universite.academique,
+		'Academique',
+		((select pourcentage FROM cleRepartition WHERE role='Academique') * (select montant from inscription where inscription.idMembre= affectationmbremodule.idMembre and inscription.idModule=formation.idModule)/100),
+		(select monnaie from inscription where inscription.idMembre= affectationmbremodule.idMembre and inscription.idModule=formation.idModule),
+		(select taux from inscription where inscription.idMembre= affectationmbremodule.idMembre and inscription.idModule=formation.idModule),
+		'Entree',
+		concat('Formation de ', membre.nom, ' ',membre.postnom,' ',membre.prenom,' au module: ',module.design)
+		from affectationmbremodule
+		inner join formation on affectationmbremodule.idFormation=formation.idFormation
+		inner join module on formation.idModule=module.idModule
+		inner join universite on formation.idUniv=universite.idUniv
+		inner join membre on affectationmbremodule.idMembre=membre.idMembre
+		where formation.idFormation=NEW.idFormation;
+
+		INSERT INTO journalisation
+		(
+		dateop,
+		idop,
+		opJourn,
+		idMembre,
+		roleMbre,
+		montant,
+		monnaie,
+		taux,
+		mouvement,
+		libelle
+		) 
+		SELECT now(),
+		CONCAT(affectationmbremodule.idmembre,affectationmbremodule.idformation) as idop, 
+		'Formation',
+		universite.ab,
+		'AB',
+		((select pourcentage FROM cleRepartition WHERE role='AB') * (select montant from inscription where inscription.idMembre= affectationmbremodule.idMembre and inscription.idModule=formation.idModule)/100),
+		(select monnaie from inscription where inscription.idMembre= affectationmbremodule.idMembre and inscription.idModule=formation.idModule),
+		(select taux from inscription where inscription.idMembre= affectationmbremodule.idMembre and inscription.idModule=formation.idModule),
+		'Entree',
+		concat('Formation de ', membre.nom, ' ',membre.postnom,' ',membre.prenom,' au module: ',module.design)
+		from affectationmbremodule
+		inner join formation on affectationmbremodule.idFormation=formation.idFormation
+		inner join module on formation.idModule=module.idModule
+		inner join universite on formation.idUniv=universite.idUniv
+		inner join membre on affectationmbremodule.idMembre=membre.idMembre
+		where formation.idFormation=NEW.idFormation;
+
+				
+		RETURN NEW;
+	END;
+$BODY$
+LANGUAGE 'plpgsql';
+
+
+/*Declencheur de journalisation de la formation*/
+/*=============================================*/
+CREATE TRIGGER journalisation_formation
+AFTER INSERT
+ON clotureFormation
+FOR EACH ROW
+EXECUTE PROCEDURE journalisation_formation_log();
+
+
+/*Requette pour alimenter le graphique*/
+/*====================================*/
+select (sum(case when monnaie='FC' then montant/taux else montant end))::int as mont, roleMbre from journalisation where idmembre='1' group by roleMbre
+
+select (sum(case when monnaie='FC' then montant/taux else montant end))::int as mont from journalisation where idmembre='1'
