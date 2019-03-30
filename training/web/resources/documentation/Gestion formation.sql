@@ -492,13 +492,87 @@ CREATE TABLE personne
 
 INSERT INTO personne select idmembre,'-','-','Goma' from membre
 
-INSERT INTO personne SELECT iduniv,'-','-','Goma' from universite
+INSERT INTO personne SELECT iduniv,tel,email,adresse from universite
 
-ALTER TABLE universite ALTER COLUMN iduniv TYPE varchar(10)
+
+ALTER TABLE formation DROP CONSTRAINT fk_form_univ;
+ALTER TABLE formation ALTER COLUMN iduniv type varchar(10);
+ALTER TABLE universite DROP CONSTRAINT pk_univ;
+ALTER TABLE universite ALTER COLUMN type iduniv varchar(10) not null;
+ALTER TABLE universite ADD CONSTRAINT pk_univ PRIMARY KEY(idUniv);
+ALTER TABLE formation ADD constraint fk_form_univ foreign key(idUniv)references Universite(idUniv)on delete cascade on update cascade;
 
 ALTER TABLE utilisateur drop CONSTRAINT fk_membre_utilisateur
 
 ALTER TABLE utilisateur ADD CONSTRAINT fk_membre_utilisateur FOREIGN KEY (Idutilisateur) REFERENCES personne(idpers) ON DELETE CASCADE ON UPDATE CASCADE
 
+ALTER TABLE membre ADD CONSTRAINT fk_membre_pers FOREIGN KEY(idmembre) REFERENCES personne(idpers) ON DELETE CASCADE ON UPDATE CASCADE
+
+CREATE TABLE structure
+(
+	idStruct varchar(10) not null,
+	nom varchar(250) not null,
+	sigle varchar(15) not null,
+	siteWeb varchar(50),
+	CONSTRAINT pk_struct PRIMARY KEY(idStruct),
+	CONSTRAINT fk_struct_pers FOREIGN KEY(idStruct) REFERENCES personne(idpers) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+INSERT INTO structure SELECT iduniv,nom,sigle,siteWeb from universite;
+
+ALTER TABLE universite DROP COLUMN nom;
+ALTER TABLE universite DROP COLUMN sigle;
+ALTER TABLE universite DROP COLUMN siteWeb;
+ALTER TABLE universite DROP COLUMN tel;
+ALTER TABLE universite DROP COLUMN email;
+ALTER TABLE universite DROP COLUMN adresse;
+
+ALTER TABLE universite ADD CONSTRAINT fk_univ_struct FOREIGN KEY(iduniv) REFERENCES structure(idStruct) ON DELETE CASCADE ON UPDATE CASCADE 
+
+CREATE TABLE faculte
+(
+	designation varchar(50),
+	CONSTRAINT pk_fac PRIMARY KEY(designation)
+);
+
+CREATE TABLE section
+(
+	idSect varchar(10),
+	iduniv varchar(10),
+	designation varchar(50),
+	vacation varchar(20),
+	CONSTRAINT pk_sect PRIMARY KEY(idSect),
+	CONSTRAINT fk_sect_pers FOREIGN KEY(idSect) REFERENCES personne(idpers) ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT fk_sect_univ FOREIGN KEY(iduniv) REFERENCES universite(iduniv) ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT fk_sect_fac FOREIGN KEY(designation) REFERENCES faculte(designation) ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT uk_sect UNIQUE(iduniv,designation,vacation)
+);
+
+CREATE TABLE promotion
+(
+	idprom varchar(10),
+	idSect varchar(10),
+	promotion varchar(2),
+	cp varchar(10),
+	CONSTRAINT pk_prom PRIMARY KEY(idprom),
+	CONSTRAINT fk_prom_sect FOREIGN KEY(idSect) REFERENCES section(idSect) ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT fk_prom_mbre FOREIGN KEY(cp) REFERENCES membre(idmembre),
+	CONSTRAINT uk_prom UNIQUE(idSect,promotion),
+	CONSTRAINT chk_prom CHECK(promotion IN('G1','G2','G3','L1','L2'))
+);
+
+CREATE TABLE promotionMbre
+(
+	idmembre varchar(10),
+	idprom varchar(10),
+	CONSTRAINT pk_prom_mbre PRIMARY KEY(idmembre),
+	CONSTRAINT fk_prom_mbre FOREIGN KEY(idmembre) REFERENCES membre(idmembre) ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT fk_prom_pr FOREIGN KEY(idprom) REFERENCES promotion(idprom) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+ALTER TABLE journalisation DROP CONSTRAINT fk_journal_membre;
+ALTER TABLE journalisation ADD CONSTRAINT fk_journal_membre FOREIGN KEY(idMembre) REFERENCES personne(idpers) ON UPDATE CASCADE ON DELETE CASCADE
+
+ 
 
 
