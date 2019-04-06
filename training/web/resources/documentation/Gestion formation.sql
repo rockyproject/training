@@ -498,10 +498,12 @@ INSERT INTO personne SELECT iduniv,tel,email,adresse from universite
 ALTER TABLE formation DROP CONSTRAINT fk_form_univ;
 ALTER TABLE formation ALTER COLUMN iduniv type varchar(10);
 ALTER TABLE universite DROP CONSTRAINT pk_univ;
-ALTER TABLE universite ALTER COLUMN type iduniv varchar(10) not null;
+
 ALTER TABLE universite ADD CONSTRAINT pk_univ PRIMARY KEY(idUniv);
 ALTER TABLE formation ADD constraint fk_form_univ foreign key(idUniv)references Universite(idUniv)on delete cascade on update cascade;
 
+/*PROBLEME D'EXECUTION*/
+ALTER TABLE universite ALTER COLUMN type iduniv varchar(10) not null;
 ALTER TABLE utilisateur drop CONSTRAINT fk_membre_utilisateur
 
 ALTER TABLE utilisateur ADD CONSTRAINT fk_membre_utilisateur FOREIGN KEY (Idutilisateur) REFERENCES personne(idpers) ON DELETE CASCADE ON UPDATE CASCADE

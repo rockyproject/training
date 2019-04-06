@@ -22,8 +22,11 @@
                     <h:outputText value="#{universite.adresse}"/>
                 </p:column>
                 <p:column headerText="Action">
-                    <h:commandButton action="#{formation.Saisie()}" value="Selectionner">
+                    <h:commandButton action="#{formation.Saisie()}" value="Selectionner" rendered="#{actionMessage.action eq 'Formation'}">
                         <f:setPropertyActionListener target="#{formation.universite}" value="#{universite}"/>                        
+                    </h:commandButton>
+                    <h:commandButton action="#{section.selectFaculte()}" value="Selectionner" rendered="#{actionMessage.action eq 'Section'}">
+                        <f:setPropertyActionListener target="#{section.univ}" value="#{universite}"/>                        
                     </h:commandButton>
                 </p:column>
                 <p:column headerText="Modification" rendered="#{membre.action eq 'maj'}">

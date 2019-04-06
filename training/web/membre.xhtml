@@ -22,7 +22,7 @@
             <table>
                 <tr>
                     <td> id </td>
-                    <td><h:inputText value="#{membre.idMembre}" readonly="true"/></td>
+                    <td><h:inputText value="#{membre.idPers}" readonly="true"/></td>
                     <td><h:inputText value="#{membre.motPass}" readonly="true"/></td>
                 </tr>
                 <tr>
@@ -47,7 +47,18 @@
                         </h:selectOneMenu>
                     </td>
                 </tr>
-                
+                 <tr>
+                    <td> Téléphone </td>
+                    <td><h:inputText value="#{membre.tel}"/></td>
+                </tr>
+                <tr>
+                    <td> Email </td>
+                    <td><h:inputText value="#{membre.email}"/></td>
+                </tr>
+                 <tr>
+                    <td> Adresse </td>
+                    <td><h:inputText value="#{membre.adresse}"/></td>
+                </tr>
                 <tr>
                     <td><h:commandButton action="#{membre.retour()}" value="Retour"/></td>
                     <td><h:commandButton action="#{membre.enregistrer()}" value="Enregistrer"/></td>

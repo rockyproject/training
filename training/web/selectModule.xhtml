@@ -8,9 +8,7 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <h:form>
-            
-            
+        <h:form>                   
             <p:dataTable var="modules" value="#{module.liste()}">
                 <p:column headerText="ID">
                     <h:outputText value="#{modules.idModule}" />
@@ -21,8 +19,7 @@
                 <p:column headerText="Auteur">
                     <h:outputText value="#{modules.auteurs}" />
                 </p:column>
-                 <p:column headerText="Action" >
-                     
+                 <p:column headerText="Action" >                    
                      <h:commandButton action="#{inscription.selectMembre()}" value="Selectionner" rendered="#{actionMessage.action eq 'Inscription'}">
                          <f:setPropertyActionListener target="#{inscription.module}" value="#{modules}"/>
                      </h:commandButton>
