@@ -285,7 +285,7 @@ public class Formation {
                     + "'"+ this.heureFin+ ":" + this.minuteFin +"',"
                     + "'"+ new SimpleDateFormat("yyyy-MM-dd").format(this.dateDebut) +"',"
                     + "'"+ new SimpleDateFormat("yyyy-MM-dd").format(this.dateFin) +"',"
-                    + "'"+ this.universite.getIduniv() +"'"
+                    + "'"+ this.universite.getIdStruct()+"'"
                     + ")"
             );
                         //Initialisation

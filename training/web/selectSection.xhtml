@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+         <h:form>
+             <p:dataTable var="sections" value="#{section.liste()}">
+                <p:column headerText="Faculté">
+                    <h:outputText value="#{sections.designFac}"/>
+                </p:column>
+                 <p:column headerText="Vacation">
+                     <h:outputText value="#{sections.vacation}"/>
+                </p:column>
+                <p:column headerText="Action">
+                    <h:commandButton action="#{promotion.saisie()}" value="Selectionner" rendered="#{actionMessage.action eq 'Promotion'}">
+                        <f:setPropertyActionListener target="#{promotion.sections}" value="#{sections}"/>                        
+                    </h:commandButton>                  
+                </p:column>             
+            </p:dataTable>
+            
+            
+        </h:form>
+    </h:body>
+</html>
+

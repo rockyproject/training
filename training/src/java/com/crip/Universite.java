@@ -20,78 +20,19 @@ import org.json.simple.parser.ParseException;
  */
 @ManagedBean
 @SessionScoped
-public class Universite {
-    private String iduniv=generateIdUniversite();
-    private String nom;
-    private String sigle;
-    private String adresse;
-    private String tel;
-    private String email;
-    private String siteweb;
+public class Universite extends Structure {
     private String dg;
     private String academique;
     private String ab;
+    private String percepteur;
     private String action;
     private String message;
     private Membre dirGen;
     private Membre academ;
     private Membre adminBugd;
-
-    public String getIduniv() {
-        return iduniv;
-    }
-
-    public void setIduniv(String iduniv) {
-        this.iduniv = iduniv;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getSigle() {
-        return sigle;
-    }
-
-    public void setSigle(String sigle) {
-        this.sigle = sigle;
-    }
-
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSiteweb() {
-        return siteweb;
-    }
-
-    public void setSiteweb(String siteweb) {
-        this.siteweb = siteweb;
-    }
+    private Membre percept;
+    Membre mbre=new Membre();
+    private String motPass=mbre.generatePSWD();
 
     public String getDg() {
         return dg;
@@ -117,7 +58,14 @@ public class Universite {
         this.ab = ab;
     }
 
-   
+    public String getPercepteur() {
+        return percepteur;
+    }
+
+    public void setPercepteur(String percepteur) {
+        this.percepteur = percepteur;
+    }
+     
 
     public String getAction() {
         return action;
@@ -158,6 +106,22 @@ public class Universite {
     public void setAdminBugd(Membre adminBugd) {
         this.adminBugd = adminBugd;
     }
+
+    public String getMotPass() {
+        return motPass;
+    }
+
+    public void setMotPass(String motPass) {
+        this.motPass = motPass;
+    }
+
+    public Membre getPercept() {
+        return percept;
+    }
+
+    public void setPercept(Membre percept) {
+        this.percept = percept;
+    }
     
     
 
@@ -167,14 +131,14 @@ public class Universite {
     public Universite() {
     }
     
-    public Universite(String iduniv,String nom,String sigle,String adresse, String tel,String email,String siteweb,String dg, String academique, String ab) {
-        this.iduniv=iduniv;
-        this.nom=nom;
-        this.sigle=sigle;
-        this.adresse=adresse;
-        this.tel=tel;
-        this.email=email;
-        this.siteweb=siteweb;
+    public Universite(String idStruct,String nom,String sigle,String adresse, String tel,String email,String siteweb,String dg, String academique, String ab) {
+        super.idStruct=idStruct;
+        super.nom=nom;
+        super.sigle=sigle;
+        super.adresse=adresse;
+        super.tel=tel;
+        super.email=email;
+        super.siteweb=siteweb;
         this.dg=dg;
         this.academique=academique;
         this.ab=ab;
@@ -183,41 +147,42 @@ public class Universite {
     public String Enregistrer(){
         try {
             DBConnection cnx=new DBConnection();
-            cnx.Execute_Query("Insert into Universite ("
-                    + "iduniv,"
-                    + "nom,"
-                    + "sigle,"
-                    + "adresse,"
-                    + "tel,"
-                    + "email,"
-                    + "siteweb,"
-                    + "dg,"
-                    + "academique,"
-                    + "ab) VALUES ("
-                    + "'"+ this.iduniv +"',"
-                    + "'"+ this.nom +"',"
-                    +"'"+ this.sigle +"',"
-                    +"'"+ this.adresse +"',"
-                    +"'"+ this.tel +"',"
-                    +"'"+ this.email +"',"
-                    +"'"+ this.siteweb +"',"
-                    +"'"+ this.dirGen.getIdMembre() +"',"
-                    +"'"+ this.academ.getIdMembre() +"',"
-                    +"'"+ this.adminBugd.getIdMembre() +"')"
-                    
-                ); 
+            cnx.Execute_Query(
+                    "BEGIN; "
+                    + "INSERT INTO Personne(idpers,tel,email,adresse) VALUES ("
+                    + "'" + super.idStruct + "'," 
+                    + "'" + super.tel + "'," 
+                    + "'" + super.email + "',"
+                    + "'" + super.adresse + "'); "
+                    + "INSERT INTO Structure(idStruct, nom, sigle, siteWeb) VALUES ("
+                    + "'" + super.idStruct + "'," 
+                    + "'" + super.nom + "'," 
+                    + "'" + super.sigle + "',"
+                    + "'" + super.siteweb + "'); "
+                    + "INSERT INTO utilisateur(idutilisateur,motdepasse) VALUES ("
+                    + "'" + super.idStruct + "',"
+                    + "'" + this.motPass + "'); "
+                    + "INSERT INTO Universite (idUniv,dg,academique,ab,percepteur) VALUES ("
+                    + "'"+ super.idStruct +"',"
+                    + "'"+ this.dirGen.getIdPers() +"',"
+                    + "'"+ this.academ.getIdPers() +"',"
+                    + "'"+ this.adminBugd.getIdPers() +"',"
+                    + "'"+ this.percept.getIdPers() +"'); "
+                    + "COMMIT;"
+            ); 
                 this.message = "";
                 this.action = "";
-                this.iduniv = "";
-                this.nom="";
-                this.sigle="";
-                this.adresse="";
-                this.tel="";
-                this.email="";
-                this.siteweb="";
+                super.idStruct = "";
+                super.nom="";
+                super.sigle="";
+                super.adresse="";
+                super.tel="";
+                super.email="";
+                super.siteweb="";
                 this.dg="";
                 this.academique="";
                 this.ab="";
+                this.percepteur="";
                 this.dirGen=new Membre();
                 this.academ=new Membre();
                 this.adminBugd=new Membre();
@@ -244,7 +209,8 @@ public class Universite {
                             + "dg, "
                             + "academique, "
                             + "ab "
-                            + "FROM Universite"
+                            + "FROM Universite inner join Structure on Universite.idUniv=Structure.idStruct "
+                            + "inner join Personne on Structure.idStruct=Personne.IdPers "
             );
             
             while(result.next())
@@ -285,17 +251,5 @@ public class Universite {
          return "selectMembre";
      }
      
-     //GENERATION DE  L'id de l'université
-    //=====================================
-    private String generateIdUniversite(){
-        String id="";
-        try {            
-            DBConnection conn = new DBConnection();
-            id = conn.Show_Data("select id from (select ((random()*10000000)::int)::varchar(10) AS id) t where id not in (select iduniv from Universite)", "id", 1);
-            
-        } catch (ClassNotFoundException | SQLException | IOException | ParseException ex) {
-            this.message = ex.getMessage();
-        }
-        return id;
-    }
+    
 }

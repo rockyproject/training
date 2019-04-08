@@ -22,6 +22,22 @@
                             #{utilisateur.nom} #{utilisateur.postNom} #{utilisateur.prenom}
                             <p:menubar>
                                 <p:submenu label="Saisie">
+                                   
+                                    <p:menuitem>
+                                        <h:commandLink action="#{faculte.saisie()}" value="Faculté">
+                                            <f:setPropertyActionListener target="#{actionMessage.action}" value="Faculté"/>
+                                        </h:commandLink>
+                                    </p:menuitem>
+                                    <p:menuitem>
+                                         <h:commandLink action="#{section.selectUniversite()}" value="Section">
+                                            <f:setPropertyActionListener target="#{actionMessage.action}" value="Section"/>
+                                        </h:commandLink>
+                                    </p:menuitem>
+                                    <p:menuitem>
+                                        <h:commandLink action="#{promotion.selectSection()}" value="Promotion">
+                                            <f:setPropertyActionListener target="#{actionMessage.action}" value="Promotion"/>
+                                        </h:commandLink>
+                                    </p:menuitem>
                                     <p:menuitem>
                                         <h:commandLink action="#{inscription.selectModule()}" value="Inscription à la formation">
                                             <f:setPropertyActionListener target="#{actionMessage.action}" value="Inscription"/>

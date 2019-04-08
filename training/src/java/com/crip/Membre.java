@@ -18,8 +18,8 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 
-public class Membre {
-    protected String idMembre = generateIdMembre();
+public class Membre extends Personne{
+    protected String idMembre ;
     protected String nom;
     protected String postNom;
     protected String prenom;
@@ -33,8 +33,8 @@ public class Membre {
     public Membre() {
     }
 
-    public Membre(String idMembre, String nom, String postNom, String prenom, String sexe) {
-        this.idMembre = idMembre;
+    public Membre(String idPers, String nom, String postNom, String prenom, String sexe) {
+        super.idPers = idPers;
         this.nom = nom;
         this.postNom = postNom;
         this.prenom = prenom;
@@ -127,23 +127,33 @@ public class Membre {
             conn.Execute_Query(
                     "BEGIN; "
                     + "INSERT INTO membre(idmembre, nom, postnom, prenom, sexe) VALUES ("
-                    + "'" + idMembre + "'," 
+                    + "'" + super.idPers + "'," 
                     + "'" + nom + "'," 
                     + "'" + postNom + "',"
                     + "'" + prenom + "',"
                     + "'" + sexe + "'); "
                     + "INSERT INTO utilisateur(idutilisateur,motdepasse) VALUES ("
-                    + "'" + this.idMembre + "',"
+                    + "'" + super.idPers + "',"
                     + "'" + this.motPass + "'); "
+                    + "INSERT INTO Personne (idpers,tel,email,adresse) VALUES ("
+                    + "'"+ super.idPers +"',"
+                    + "'"+ super.tel +"',"
+                    + "'"+ super.email +"',"
+                    + "'"+ super.adresse +"'); "
                     + "COMMIT;"
             ); 
             message = "Enregistrement effectué avec succès";
-            idMembre = this.generateIdMembre();
+            Personne pers=new Personne();
+            super.idPers =pers.generateIdMembre() ;
             this.motPass = this.generatePSWD();
             nom = "";
             postNom = "";
             prenom = "";
             sexe = "";
+            
+            super.tel="";
+            super.email="";
+            super.adresse="";
         } catch (ClassNotFoundException | SQLException | IOException | ParseException ex) {
             message= ex.getMessage();
         }
@@ -257,24 +267,11 @@ public class Membre {
     public String retour(){
         return "main";
     }
-        
-    //GENERATION DU idMembre
-    //======================
-    private String generateIdMembre(){
-        String id="";
-        try {            
-            DBConnection conn = new DBConnection();
-            id = conn.Show_Data("select id from (select ((random()*10000000)::int)::varchar(10) AS id) t where id not in (select idmembre from membre)", "id", 1);
-            
-        } catch (ClassNotFoundException | SQLException | IOException | ParseException ex) {
-            this.message = ex.getMessage();
-        }
-        return id;
-    }
+  
     
     //GENERATION DU MOT DE PASSE
     //==========================
-    private String generatePSWD(){
+    public String generatePSWD(){
         String uuid = UUID.randomUUID().toString();
         return uuid.substring(0, 4) + "rck" + uuid.substring(4, 8);
     }
