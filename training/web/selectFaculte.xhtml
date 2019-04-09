@@ -16,7 +16,7 @@
                 </p:column>
                
                 <p:column headerText="Action">
-                    <h:commandButton action="#{formation.Saisie()}" value="Selectionner" rendered="#{actionMessage.action eq 'Section'}">
+                    <h:commandButton action="saisieSection?faces-redirect=true" value="Selectionner" rendered="#{actionMessage.action eq 'Section'}">
                         <f:setPropertyActionListener target="#{section.fac}" value="#{facultes}"/>                        
                     </h:commandButton>                  
                 </p:column>             

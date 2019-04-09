@@ -39,16 +39,12 @@
                     <td> Vacation </td>
                     <td>
                         <h:selectOneMenu value="#{section.vacation}">
-                            <f:selectItems value=""/>
-                            <f:selectItems value="Jour"/>
-                            <f:selectItems value="Soir"/>
+                            <f:selectItem itemValue="" itemLabel=""/>
+                            <f:selectItem itemValue="Jour" itemLabel="Jour"/>
+                            <f:selectItem itemValue="Soir" itemLabel="Soir"/>
                         </h:selectOneMenu> 
                     </td>
                 </tr>
-                <tr>
-                    <td><h:outputText value="Vacation"/></td>
-                    <td><h:inputText value="#{section.vacation}" /></td>                  
-                </tr> 
                 <tr>
                     <td><h:commandButton value="Retour" action="#{inscription.retour()}"/></td>
                     <td><h:commandButton value="Enregistrer" action="#{faculte.enregistrer()}"/></td>
