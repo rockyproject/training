@@ -20,27 +20,27 @@
                     <h:outputText value="#{modules.auteurs}" />
                 </p:column>
                  <p:column headerText="Action" >                    
-                     <h:commandButton action="#{inscription.selectMembre()}" value="Selectionner" rendered="#{actionMessage.action eq 'Inscription'}">
+                     <h:commandButton action="selectMembre?faces-redirect=true" value="Selectionner" rendered="#{actionMessage.action eq 'Inscription'}">
                          <f:setPropertyActionListener target="#{inscription.module}" value="#{modules}"/>
                      </h:commandButton>
-                     <h:commandButton action="#{formation.selectFormateur()}" value="Selectionner" rendered="#{actionMessage.action eq 'Formation'}">
+                     <h:commandButton action="selectFormateur?faces-redirect=true" value="Selectionner" rendered="#{actionMessage.action eq 'Formation'}">
                          <f:setPropertyActionListener target="#{formation.module}" value="#{modules}"/>
                      </h:commandButton>
                      <h:commandButton action="#{formateur.enregistrer()}" value="Selectionner" rendered="#{actionMessage.action eq 'Formateurs'}">
                          <f:setPropertyActionListener target="#{formateur.module}" value="#{modules}"/>
                      </h:commandButton>
-                     <h:commandButton action="#{evaluation.saisie()}" value="Selectionner" rendered="#{actionMessage.action eq 'Evaluation'}">
+                     <h:commandButton action="saisieEvaluation?faces-redirect=true" value="Selectionner" rendered="#{actionMessage.action eq 'Evaluation'}">
                          <f:setPropertyActionListener target="#{evaluation.module}" value="#{modules}"/>
                      </h:commandButton>
                      
-                     <h:commandButton action="#{module.saisie()}" value="Modifier">
+                     <h:commandButton action="module?faces-redirect=true" value="Modifier">
                          <f:setPropertyActionListener target="#{miseAjour.module}" value="#{modules}"/>
                          <f:setPropertyActionListener target="#{module.idModule}" value="#{modules.idModule}"/>
                          <f:setPropertyActionListener target="#{module.designation}" value="#{modules.designation}"/>
                          <f:setPropertyActionListener target="#{module.nbrePage}" value="#{modules.nbrePage}"/>
                          <f:setPropertyActionListener target="#{actionMessage.action}" value="modification"/>
                      </h:commandButton>
-                     <h:commandButton action="#{module.saisie()}" value="Supprimer">
+                     <h:commandButton action="module?faces-redirect=true" value="Supprimer">
                          <f:setPropertyActionListener target="#{miseAjour.module}" value="#{modules}"/>
                          <f:setPropertyActionListener target="#{module.idModule}" value="#{modules.idModule}"/>
                          <f:setPropertyActionListener target="#{module.designation}" value="#{modules.designation}"/>

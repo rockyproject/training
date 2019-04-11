@@ -22,7 +22,7 @@
                     <h:outputText value="#{universite.adresse}"/>
                 </p:column>
                 <p:column headerText="Action">
-                    <h:commandButton action="#{formation.Saisie()}" value="Selectionner" rendered="#{actionMessage.action eq 'Formation'}">
+                    <h:commandButton action="saisieFormation?faces-redirect=true" value="Selectionner" rendered="#{actionMessage.action eq 'Formation'}">
                         <f:setPropertyActionListener target="#{formation.universite}" value="#{universite}"/>                        
                     </h:commandButton>
                     <h:commandButton action="selectFaculte?faces-redirect=true" value="Selectionner" rendered="#{actionMessage.action eq 'Section'}">
@@ -39,7 +39,7 @@
                 </p:column>              
             </p:dataTable>
             <br/>
-            <h:commandButton action="#{universite.saisie()}" value="Nouveau">
+            <h:commandButton action="saisieUniversite?faces-redirect=true" value="Nouveau">
                 <f:setPropertyActionListener target="#{module.action}" value="saisie"/>
             </h:commandButton>
         </h:form>

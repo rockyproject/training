@@ -109,11 +109,12 @@ public class Section extends Personne{
             super.email="";
             super.adresse="";
             this.vacation="";
+            return "main";
         } catch (ClassNotFoundException | SQLException | IOException | ParseException ex) {
             message= ex.getMessage();
-            
+            return "saisieSection";
         } 
-        return "saisieSection";
+        
     }
     
     public String selectUniversite(){

@@ -26,10 +26,10 @@
                     <h:outputText value="#{membre.prenom}"/>
                 </p:column>
                 <p:column headerText="Action">
-                    <h:commandButton action="#{inscription.saisie()}" value="Selectionner" rendered="#{actionMessage.action eq 'Inscription'}">
+                    <h:commandButton action="saisieInscription?faces-redirect=true" value="Selectionner" rendered="#{actionMessage.action eq 'Inscription'}">
                         <f:setPropertyActionListener target="#{inscription.membre}" value="#{membre}"/>                        
                     </h:commandButton>
-                    <h:commandButton action="#{evaluation.selectModule()}" value="Selectionner" rendered="#{actionMessage.action eq 'Evaluation'}">
+                    <h:commandButton action="selectModule?faces-redirect=true" value="Selectionner" rendered="#{actionMessage.action eq 'Evaluation'}">
                         <f:setPropertyActionListener target="#{evaluation.membre}" value="#{membre}"/>                        
                     </h:commandButton>
                     <h:commandButton action="#{formateur.enregistrerFormateur()}" value="Selectionner" rendered="#{actionMessage.action eq 'Formateurs'}">
@@ -39,21 +39,21 @@
                         <f:setPropertyActionListener target="#{formateur.prenom}" value="#{membre.prenom}"/>
                         <f:setPropertyActionListener target="#{formateur.sexe}" value="#{membre.sexe}"/>
                     </h:commandButton>                 
-                    <h:commandButton action="#{universite.selectAcademique()}" value="Selectionner D.G" rendered="#{actionMessage.action eq 'UniversiteDG'}">
+                    <h:commandButton action="selectMembre?faces-redirect=true" value="Selectionner D.G" rendered="#{actionMessage.action eq 'UniversiteDG'}">
                         <f:setPropertyActionListener target="#{universite.dirGen}" value="#{membre}"/>
                         <f:setPropertyActionListener target="#{actionMessage.action}" value="UniversiteAC"/>
                     </h:commandButton>
-                    <h:commandButton action="#{universite.selectAb()}" value="Selectionner Académique" rendered="#{actionMessage.action eq 'UniversiteAC'}">
+                    <h:commandButton action="selectMembre?faces-redirect=true" value="Selectionner Académique" rendered="#{actionMessage.action eq 'UniversiteAC'}">
                         <f:setPropertyActionListener target="#{universite.academ}" value="#{membre}"/> 
                         <f:setPropertyActionListener target="#{actionMessage.action}" value="UniversiteAB"/>
                     </h:commandButton>
-                    <h:commandButton action="#{universite.saisie()}" value="Selectionner A.B" rendered="#{actionMessage.action eq 'UniversiteAB'}">
+                    <h:commandButton action="saisieUniversite?faces-redirect=true" value="Selectionner A.B" rendered="#{actionMessage.action eq 'UniversiteAB'}">
                         <f:setPropertyActionListener target="#{universite.adminBugd}" value="#{membre}"/>                         
                     </h:commandButton>
-                    <h:commandButton action="#{formation.selectFormation()}" value="Selectionner" rendered="#{actionMessage.action eq 'AffectationFormation'}">
+                    <h:commandButton action="selectFormation?faces-redirect=true" value="Selectionner" rendered="#{actionMessage.action eq 'AffectationFormation'}">
                         <f:setPropertyActionListener target="#{formation.membre}" value="#{membre}"/>                         
                     </h:commandButton>
-                    <h:commandButton action="#{module.saisie()}" value="Selectionner" rendered="#{actionMessage.action eq 'Module'}">
+                    <h:commandButton action="module?faces-redirect=true" value="Selectionner" rendered="#{actionMessage.action eq 'Module'}">
                          <f:setPropertyActionListener target="#{module.auteur}" value="#{membre}"/>
                     </h:commandButton>
                 </p:column>

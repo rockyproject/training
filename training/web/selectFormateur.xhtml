@@ -28,10 +28,10 @@
                     <h:outputText value="#{formateurs.prenom}"/>
                 </p:column>
                 <p:column headerText="Action">
-                    <h:commandButton action="#{formation.selectUniversite()}" value="Selectionner" rendered="#{actionMessage.action eq 'Formation'}">
+                    <h:commandButton action="selectUniversite?faces-redirect=true" value="Selectionner" rendered="#{actionMessage.action eq 'Formation'}">
                         <f:setPropertyActionListener target="#{formation.membre}" value="#{formateurs}"/>                        
                     </h:commandButton>                    
-                    <h:commandButton action="#{formateur.selectModule()}" value="Selectionner" rendered="#{actionMessage.action eq 'Formateurs'}">
+                    <h:commandButton action="selectModule?faces-redirect=true" value="Selectionner" rendered="#{actionMessage.action eq 'Formateurs'}">
                         <f:setPropertyActionListener target="#{formateur.idMembre}" value="#{formateurs.idMembre}"/> 
                         <f:setPropertyActionListener target="#{formateur.nom}" value="#{formateurs.nom}"/>
                         <f:setPropertyActionListener target="#{formateur.postNom}" value="#{formateurs.postNom}"/>
